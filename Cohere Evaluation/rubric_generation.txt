@@ -1,0 +1,17 @@
+"""You are analyzing a set of high-quality, gold-standard medical answers.  
+Your task is to extract the key themes and recurring qualities that make these responses effective and reliable.
+
+Gold Standard Answers:
+{gold_answers}
+
+Instructions:
+- Carefully study the medical content, tone, and structure of the answers.  
+- Identify specific patterns related to medical accuracy, clarity, completeness, and patient-centered communication.  
+- Focus on how the answers provide guidance, manage uncertainty, simplify technical concepts, and support the user.
+
+Your Output:
+Extract 15–20 distinct, high-level themes that consistently appear across the answers.  
+Each theme must be written as a precise, actionable statement that captures a key characteristic of effective medical QA.  
+Do NOT summarize or generalize. Instead, describe each theme clearly and concretely.
+
+Return only the list of themes, numbered from 1 to 20 (or fewer if fewer are appropriate)."""

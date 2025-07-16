@@ -1,0 +1,11 @@
+"""Given these evaluation rubrics and the available axes, 
+classify each rubric to the most appropriate axis.
+
+Available Axes:
+{axes_description}
+
+Rubrics to classify:
+{rubrics}
+
+Return a JSON object where keys are axis names and values are lists of rubrics 
+assigned to that axis. Each rubric should be assigned to exactly one axis."""

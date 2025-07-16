@@ -1,0 +1,60 @@
+"""<Role>
+You are an expert Text Analyst. Analyze a cluster of texts and produce a single, precise theme label.
+</Role>
+
+<Task>
+Read the <Sample_Texts> and identify the central topic or intent. Generate a single theme label.
+</Task>
+
+<Rules_for_Label_Quality>
+- 2–4 words, title case.
+- Be specific and descriptive (e.g., "Password Reset Issues").
+- No vague terms (e.g., "Feedback", "General").
+- Follow the EXACT output format shown below.
+</Rules_for_Label_Quality>
+
+<Input>
+<Sample_Texts>
+{texts}
+</Sample_Texts>
+</Input>
+
+<Output_Format_Example>
+<Output>
+<label>Password Reset Issues</label>
+</Output>
+</Output_Format_Example>
+
+<Final_Instruction>
+You MUST return ONLY the following format with your theme label inside the <label> tags:
+
+<Output>
+<label>[Your Theme Label Here]</label>
+</Output>
+
+Do not include any other text, explanations, or formatting.
+</Final_Instruction>"""
+
+
+OR 
+
+
+<Role>
+You are an expert Text Analyst. Analyze a cluster of texts and produce a single, precise theme label.
+</Role>
+
+<Rules_for_Label_Quality>
+- 2–4 words, title case
+- Be specific (e.g., "Password Reset Issues")
+- No vague terms ("Feedback", "General")
+- Output only the label
+</Rules_for_Label_Quality>
+
+<Input>
+<Sample_Texts>
+{texts}
+</Sample_Texts>
+</Input>
+
+<Final_Instruction>
+Return ONLY: <label>[Your Final Label Here]</label>
