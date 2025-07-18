@@ -1,3 +1,7 @@
+Proposed new prompt to generate themes from clusters
+
+
+
 """<Role>
 You are an expert Text Analyst. Analyze a cluster of texts and produce a single, precise theme label.
 </Role>

@@ -1,0 +1,8 @@
+prompt = f"""
+You are an expert in text clustering. Below are example texts from a cluster:
+{texts}
+
+Based on these samples, suggest a concise, meaningful label for this cluster. Avoid using 'miscellaneous'.
+Return ONLY the label, without any additional text or explanation.
+Do not give labels having same meaning to different clusters.   
+"""
