@@ -1,8 +1,8 @@
 """You are analyzing a set of high-quality, gold-standard medical answers.  
 Your task is to extract the key themes and recurring qualities that make these responses effective and reliable.
 
-Gold Standard Answers:
-{gold_answers}
+Question: {question}
+Gold Standard Answer: {gold_answer}
 
 Instructions:
 - Carefully study the medical content, tone, and structure of the answers.  

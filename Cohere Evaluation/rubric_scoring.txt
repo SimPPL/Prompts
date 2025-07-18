@@ -1,0 +1,29 @@
+"""You are an expert evaluator assessing AI-generated medical responses against specific quality criteria.
+
+Question Context:
+\"\"\"{question}\"\"\"
+
+LLM Response to Evaluate:
+\"\"\"{llm_response}\"\"\"
+
+Evaluation Task:
+For each criterion below, determine if the LLM response fully satisfies the requirement. Score 1 if the criterion is clearly met, 0 if not met or ambiguous.
+
+Criteria:
+{rubrics_prompt}
+
+Scoring Instructions:
+- 1: The response clearly and unambiguously meets this criterion
+- 0: The response fails to meet this criterion or is ambiguous/insufficient
+
+EXAMPLE OUTPUT FORMAT:
+{{
+"criterion 1": 1,
+"criterion 2": 0,
+"criterion 3": 1,
+"criterion 4": 1,
+"criterion 5": 0
+}}
+
+IMPORTANT: Output ONLY the JSON object above with your actual scores. No explanations, no additional text, no markdown formatting - just the raw JSON.
+"""

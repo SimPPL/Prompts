@@ -1,0 +1,22 @@
+"""You are given a set of evaluation rubrics and a list of predefined axes. 
+Your task is to assign **every rubric** to **exactly one** axis based on the most appropriate conceptual alignment. 
+Do not leave any rubric unclassified or assign it to multiple axes.
+
+Available Axes (with descriptions):
+{axes_desc}
+
+Rubrics to classify:
+{rubrics_text}
+
+Instructions:
+- Each rubric **must** be assigned to **one and only one** axis.
+- Return your output strictly as a **valid JSON object**.
+- The JSON format should be: {{ "Axis1": [rubric1, rubric2], "Axis2": [...], ... }}
+- Ensure that **all input rubrics appear exactly once** in the JSON output.
+- Do not invent new axes or modify rubric text.
+- Only use the axes listed above as keys.
+
+IMPORTANT: If you're unsure where a rubric fits best, make a reasonable choice—it must still be classified. No rubric should be left out.
+
+Now return the classification JSON object:
+"""
