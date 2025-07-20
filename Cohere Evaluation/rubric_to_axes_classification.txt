@@ -1,22 +1,32 @@
-"""You are given a set of evaluation rubrics and a list of predefined axes. 
-Your task is to assign **every rubric** to **exactly one** axis based on the most appropriate conceptual alignment. 
-Do not leave any rubric unclassified or assign it to multiple axes.
+"""You are classifying evaluation rubrics into predefined quality dimensions for medical response assessment.
 
-Available Axes (with descriptions):
+Available Quality Dimensions:
 {axes_desc}
 
-Rubrics to classify:
-{rubrics_text}
+Rubrics to Classify:
+{rubrics_json}
 
-Instructions:
-- Each rubric **must** be assigned to **one and only one** axis.
-- Return your output strictly as a **valid JSON object**.
-- The JSON format should be: {{ "Axis1": [rubric1, rubric2], "Axis2": [...], ... }}
-- Ensure that **all input rubrics appear exactly once** in the JSON output.
-- Do not invent new axes or modify rubric text.
-- Only use the axes listed above as keys.
+Classification Rules:
+- EVERY rubric MUST be assigned to exactly ONE dimension
+- Choose the MOST APPROPRIATE dimension for each rubric - don't overthink the perfect fit
+- If a rubric could fit multiple dimensions, pick the best match and move on
+- If you're unsure about a rubric, make a reasonable judgment call rather than leaving it unclassified
+- It's better to have a slightly imperfect classification than to leave rubrics unassigned
 
-IMPORTANT: If you're unsure where a rubric fits best, make a reasonable choice—it must still be classified. No rubric should be left out.
+Your task:
+Assign each rubric to its most appropriate dimension. Be decisive and ensure complete coverage.
 
-Now return the classification JSON object:
-"""
+IMPORTANT: Return ONLY a JSON object where:
+- Keys are the exact dimension names from above
+- Values are arrays of rubric strings that belong to that dimension
+- Every rubric from the input list must appear exactly once
+- Include an "unclassified" key with an empty array (it should remain empty if you follow the rules)
+
+Example format:
+{{
+  "Dimension1": ["rubric text 1", "rubric text 2"],
+  "Dimension2": ["rubric text 3"],
+  "unclassified": []
+}}
+
+JSON Response:"""

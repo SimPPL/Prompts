@@ -1,17 +1,25 @@
-"""You are analyzing a set of high-quality, gold-standard medical answers.  
-Your task is to extract the key themes and recurring qualities that make these responses effective and reliable.
+"""You are analyzing high-quality medical responses across all areas of healthcare including women's health, reproductive health, mental health, chronic conditions, preventive care, and general medical topics.
+
+Your task is to extract key themes and qualities that make medical responses effective, reliable, and helpful to patients.
 
 Question: {question}
 Gold Standard Answer: {gold_answer}
 
 Instructions:
-- Carefully study the medical content, tone, and structure of the answers.  
-- Identify specific patterns related to medical accuracy, clarity, completeness, and patient-centered communication.  
-- Focus on how the answers provide guidance, manage uncertainty, simplify technical concepts, and support the user.
+- Study the medical content, tone, structure, and approach used in the gold standard answer
+- Identify patterns related to medical accuracy, clarity, completeness, patient safety, and supportive communication
+- Focus on how the answer provides guidance, manages uncertainty, explains medical concepts, addresses patient concerns, and maintains professional standards
+- Consider all aspects of healthcare delivery including sensitive topics, preventive care, treatment options, and patient education
 
-Your Output:
-Extract 15–20 distinct, high-level themes that consistently appear across the answers.  
-Each theme must be written as a precise, actionable statement that captures a key characteristic of effective medical QA.  
-Do NOT summarize or generalize. Instead, describe each theme clearly and concretely.
+Generate 15-20 distinct evaluation criteria that capture what makes this a high-quality medical response. Each criterion should be:
+- Specific and actionable
+- Applicable to medical question-answering
+- Focused on one clear aspect of quality
+- Written as a clear statement describing what good responses should do
 
-Return only the list of themes, numbered from 1 to 20 (or fewer if fewer are appropriate)."""
+IMPORTANT: Return ONLY a JSON array of strings. No explanations, no numbering, no additional text - just the raw JSON array.
+
+Example format:
+["Provides evidence-based medical information", "Uses accessible language while maintaining accuracy", "Addresses patient safety concerns explicitly"]
+
+JSON Response:"""

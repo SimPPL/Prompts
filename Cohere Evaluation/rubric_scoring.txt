@@ -1,29 +1,29 @@
-"""You are an expert evaluator assessing AI-generated medical responses against specific quality criteria.
+"""You are an expert medical evaluator assessing AI-generated responses against specific quality criteria.
 
 Question Context:
-\"\"\"{question}\"\"\"
+"{question}"
 
 LLM Response to Evaluate:
-\"\"\"{llm_response}\"\"\"
+"{llm_response}"
 
-Evaluation Task:
-For each criterion below, determine if the LLM response fully satisfies the requirement. Score 1 if the criterion is clearly met, 0 if not met or ambiguous.
+Evaluation Criteria:
+{rubrics_json}
 
-Criteria:
-{rubrics_prompt}
+Scoring Task:
+For each criterion, determine if the LLM response fully satisfies that requirement:
+- Score 1: The response clearly and adequately meets this criterion
+- Score 0: The response fails to meet this criterion, is insufficient, or is ambiguous
 
-Scoring Instructions:
-- 1: The response clearly and unambiguously meets this criterion
-- 0: The response fails to meet this criterion or is ambiguous/insufficient
+Scoring Guidelines:
+- Be thorough but fair in your evaluation
+- Consider the medical context and patient needs
+- Look for evidence that each criterion is specifically addressed
+- If a criterion is partially met but not completely, score it as 0
 
-EXAMPLE OUTPUT FORMAT:
-{{
-"criterion 1": 1,
-"criterion 2": 0,
-"criterion 3": 1,
-"criterion 4": 1,
-"criterion 5": 0
-}}
+IMPORTANT: Return ONLY a JSON object where:
+- Keys are the exact rubric text (as provided above)
+- Values are either 0 or 1
+- Include ALL rubrics in your response
+- No explanations, no additional text, no markdown - just the raw JSON object
 
-IMPORTANT: Output ONLY the JSON object above with your actual scores. No explanations, no additional text, no markdown formatting - just the raw JSON.
-"""
+JSON Response:"""
