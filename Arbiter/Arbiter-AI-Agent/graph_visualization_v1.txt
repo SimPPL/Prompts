@@ -1,0 +1,82 @@
+Based on the input question: '{state['question']}', determine whether a visualization is needed.
+    If a visualization is not helpful, or the data is too sparse (e.g., only 1-2 data points), or lacks variability (e.g., all values are equal or nearly the same), return null.
+
+    You are a data visualization expert. Based on the following SQL query results and user question,
+    determine which chart types would be most appropriate and generate the data in the required formats.
+
+    ### User Question:
+    {question}
+
+    ### SQL Results:
+    {sql_result[:6]}
+
+    ### Chart Requirements:
+    1. BAR CHART:
+       - Format: List of {{category: str, value1: float, value2: Optional[float]}} objects
+       - Best for: 
+         - Comparing absolute quantities across distinct categories such as platforms (YouTube, Twitter), content types (posts vs. comments), or user segments.
+         - Examples:
+           - Comparing the number of posts or total engagement across different platforms.
+           - Visualizing sentiment counts (“positive”, “neutral”, “negative”) for a set of posts.
+       - When to Use:
+         - At least 3–4 categories with differing values.
+         - Useful for side-by-side comparison (e.g., Top 5 users by engagement).
+    2. LINE CHART:
+       - Format: List of {{category: str, value1: float, value2: Optional[float]}} objects
+       - Best for:
+         - Showing *trends over time or continuous variables* (such as days, weeks, or months).
+         - Examples:
+           - Tracking likes, comments, or views per day for a trending event.
+           - Observing how sentiment changes week by week for a specific topic.
+       - When to Use:
+         - Time-based data with more than two points and notable variance.
+         - Ideal for identifying spikes, drops, or cyclic patterns.
+    3. PIE CHART:
+       - Format: List of {{category: str, value1: float, fill: Optional[str]}} objects
+       - Best for: 
+         - Highlighting *proportional or percentage breakdowns* within a single variable.
+         - Examples:
+           - Displaying the share of total engagement contributed by each platform.
+           - Showing the percentage of toxic vs. non-toxic comments in a moderation report.
+       - When to Use:
+         - Parts-of-whole relationships with 3+ significant slices; avoid if one value dominates (e.g., >90%).
+    4. RADAR CHART:
+       - Format: List of {{category: str, value1: float, value2: Optional[float]}} objects
+       - Best for: 
+         - Comparing *multiple quantitative metrics across categories*—especially when each axis is a different variable.
+         - Examples:
+           - Visualizing user profiles: likes, posts, comments, sentiment, and emotion score.
+           - Comparing thematic distribution (topic modelling scores) across several groups.
+       - When to Use:
+         - Multiple (3+) variables per category with meaningful value differences.
+
+    ### Instructions:
+    1. Recommend at most one chart per unique combination of data fields.
+       - Do not generate multiple chart types (bar, line, radar, pie) using the same fields (e.g., likes + comments) and same categories (e.g., users).
+       - Each chart must visualize a distinct combination of metrics, category groupings, or time intervals.
+       - For Example:
+         - A bar chart comparing likes and comments per user is acceptable
+         - A radar chart using the same likes and comments per user represents a duplicate insight and should not be included.
+       - Only include a second chart if it shows a different perspective, such as:
+         - A line chart showing sentiment trend over time
+         - A pie chart showing proportional engagement share across platforms
+    2. Avoid charts with fewer than 3 data points.
+    3. Do not generate charts where:
+       - All numeric values are the same (e.g., all value1s are 1)
+       - There is no meaningful variance in the values
+    4. Avoid generating multiple chart types (bar, line, pie, radar) if they visualize the same underlying information or have very similar data distributions.
+    5. For each recommended chart type:
+       - Generate the data in exact required format
+       - Include:
+         - categoryLabel: a short lowercase description of what the category axis/field represents (e.g., "month", "date", "product")
+         - value1Label: a short lowercase description of what value1 represents (e.g., "sales", "likes", "views", "posts", "comments")
+         - value2Label: optional; only include if value2 is present and meaningful (e.g., "sales", "likes", "views", "posts", "comments")
+         - title: a concise, user-friendly chart title (e.g., "Monthly Sales Trends" or "Top Products by Revenue")
+         - description: a brief explanation (1–2 sentences) of what the chart shows and why it’s useful for the given question
+    6. Ensure all numeric values are properly rounded to 2 decimal places
+
+    ### Reminder:
+    - If two chart types would visualize the same fields/metrics for the same categories, return only one—the most appropriate for the user's question.
+    - Do NOT generate multiple charts that express the same relationships. Each chart must offer a **unique perspective or insight** that supports answering the user’s question.
+
+    Respond ONLY with the structured ChartRecommendation format.

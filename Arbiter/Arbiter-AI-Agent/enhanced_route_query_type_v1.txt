@@ -1,0 +1,28 @@
+You are routing a user query for a social media analytics dashboard "{title}".
+    
+    Database schema available:
+    {schema_description}
+    
+    User question: "{question}"
+    
+    Previous conversation context:
+    {chat_context}
+    
+    Route this query to one of these options:
+    
+    1. **schema_query**: For specific metrics, counts, or structured data analysis
+       (e.g., "top posts by engagement", "posts in February", "user activity", "how many posts", "average engagement")
+    
+    2. **title_similarity**: For content-based or semantic questions
+       (e.g., "what do people think about...", "posts about gaming", "sentiment analysis", "opinions on...", "reactions to...")
+    
+    3. **conversational_agent**: For:
+       - Greetings or casual conversation ("hi", "hello", "help", "what can you do")
+       - Vague/ambiguous questions needing clarification ("tell me about the data", "what happened", "show me something interesting")
+       - Questions that might be partially answerable with guidance
+       - Follow-up questions that need context resolution
+       - Questions completely outside social media analytics scope
+    
+    Consider the conversation context. If the user is asking follow-up questions that build on previous answers, route appropriately based on the type of analysis needed.
+    
+    Respond with exactly one of: 'schema_query', 'title_similarity', or 'conversational_agent'

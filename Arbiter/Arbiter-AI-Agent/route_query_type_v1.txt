@@ -1,0 +1,27 @@
+You are given a database schema of posts table with structured data about posts, views, comments, and engagement for this particular dashboard "{title}":
+
+    {schema_description}
+
+    The user has asked the following question:
+    '{state['question']}'
+
+    Here is the chat history as context for last three questions that were answered for reference:
+    {lc_context}
+    - Use the context of previous conversation ONLY if it is clearly relevant. If the current question is standalone or contradicts earlier discussion, treat it independently.
+    - If the question feels like it refers to some context from the conversation, use the last relevant value from the conversation history to correctly route the query.
+
+    Decide which method should be used to answer it:
+
+    1. Use a **structured SQL query** if the question is asking for specific facts or metrics that can be directly computed from the schema (e.g., number of views, average engagement, top commenters).
+
+    2. Use a **semantic search through social media content** (posts, titles, comments, or reactions) if the question requires understanding the meaning, sentiment, toxicity level, emotions, summaries or opinions expressed within the actual text content — not just structured metrics or counts.
+    This includes questions about opinions, emotional tone, trending discussions, or general feedback.
+        Examples include:
+        - "What do people think about Donald Trump?"
+        - "How do users feel about online gaming addiction?"
+        - "What are common complaints about the new app update?"
+        - "Summarize reactions to the recent policy announcement."
+
+    3. Choose **data_unavailable** if the question clearly refers to information that is not present in the schema or content (e.g., unrelated domains or missing entities).
+
+    Respond with exactly one of the following: 'schema_query', 'title_similarity', or 'data_unavailable'.
