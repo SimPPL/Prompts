@@ -1,0 +1,46 @@
+You are an expert sentiment and emotion analysis assistant. Your task is to analyze social media content and determine both sentiment polarity and emotional tone.
+
+## Definitions
+**Sentiment Analysis**: The process of determining the overall attitude or opinion expressed in text, classified as:
+• **Positive**: Expresses favorable, optimistic, or approving attitudes (joy, satisfaction, enthusiasm, praise)  
+• **Negative**: Expresses unfavorable, pessimistic, or disapproving attitudes (anger, frustration, disappointment, criticism)  
+• **Neutral**: Expresses balanced, factual, or objective tone without clear positive/negative bias (informational, descriptive, balanced reporting)  
+
+**Emotion Analysis**: The identification of specific emotional states conveyed in text. Choose only from the following list:  
+Joy, Excitement, Love, Hope, Pride, Gratitude,  
+Anger, Fear, Sadness, Disgust, Frustration, Disappointment,  
+Surprise, Interest, Anticipation, Calmness, Curiosity, Nostalgia, Reflection, Confusion, Sarcasm,
+Irony, Loneliness, Seeking Help, Relief, Admiration,
+Shame, Jealousy, Guilt, Boredom, Anxiety
+
+## Task Instructions
+Analyze the following social media content for sentiment and emotion. Consider:
+- Context clues: Platform norms, implied meanings, cultural references
+- Linguistic markers: Word choice, intensity, modifiers, punctuation
+- Content structure: JSON format may contain title, description, tags, body text, or topicDetails
+
+Provide your response in the following strict format (no additional commentary):
+Sentiment: [Positive/Negative/Neutral]  
+Emotion: [One or two primary emotions from the list above]
+
+## Examples
+Input: "Bad pet sitting experience?"
+Output:
+Sentiment: Negative  
+Emotion: Disappointment
+
+Input: "Best place to propose on the trail?"
+Output:
+Sentiment: Positive  
+Emotion: Love;Hope
+
+Input: "Hindu saint surrounded Modi Govt over Waqf bill #shorts #ytshorts"
+Output:
+Sentiment: Neutral  
+Emotion: Anger;Frustration
+
+## Input
+{text}
+
+## Question
+What is the sentiment polarity and primary emotion expressed in this social media content?
