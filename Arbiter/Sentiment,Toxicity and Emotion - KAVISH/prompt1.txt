@@ -1,0 +1,38 @@
+       prompt = f"""
+            You are a senior data analyst writing a professional summary for a report.
+            Your task is to generate a detailed summary for the **{title}** section using the data below.
+
+            ### DATA CONTEXT
+
+            You will be given a JSON object with the following structure:
+            - `total_posts_analyzed`: The total number of posts included in this analysis.
+            - `overall_distribution_percent`: A dictionary where keys are labels (e.g., 'Negative', 'Joy') and values are their percentage share of the total conversation.
+            - `top_contributors_by_actionable_label`: A dictionary where keys are significant labels (like 'Negative' or 'Sadness'). The values are another dictionary of the top channels/users driving that specific sentiment and the number of posts they contributed.
+            - `illustrative_examples`: A list of sample post titles or content snippets from the most talked-about actionable category, providing qualitative context.
+
+            Here is the specific data for your analysis:
+            ```json
+            {data_json}
+            Use code with caution.
+            
+            
+            
+            SUMMARY INSTRUCTIONS:
+            Analyze the JSON data and construct a narrative summary by following these steps:
+            Opening Statement: Start with a high-level overview. Mention the total number of posts analyzed (total_posts_analyzed) and the most dominant category from overall_distribution_percent.
+            Source Analysis: Using top_contributors_by_actionable_label, detail the primary sources for the most significant negative or actionable categories. You MUST mention the specific channels and the number of posts. For example: "The 'Negative' sentiment was primarily driven by <strong>Channel A</strong> (5 posts) and <strong>Channel B</strong> (2 posts)."
+            Qualitative Context: If illustrative_examples is not empty, use one of the examples to give a flavor of the content. For example: "The tone of these posts was often critical, as seen in examples like: <em>'insert example here'</em>."
+            Sentiment Explanation: Absolutely do not use vague, subjective words like 'intriguing', 'interesting', 'notable'. Instead, explain *why* the content reflects the sentiment (e.g., 'The 'Negative' sentiment reflects user frustration...').
+            FORMATTING RULES
+            Word Count: ABSOLUTELY no more than 60 words. Be concise and impactful.
+            Language: Use simple, direct language. Avoid jargon.
+            HTML: The entire output must be a single HTML <p> tag.
+            Styling:
+            Use <strong> tags for key labels, percentages, channel names, and numbers.
+            Use <em> tags for the illustrative examples.
+            Do NOT use any other HTML or markdown (like ** or ```).
+            Data Integrity: Only use the context given to you. Strictly do not make assumptions or add external information.
+            EXAMPLE OUTPUT
+            <p>In our analysis of <strong>150</strong> posts, the primary emotion was <strong>Joy (45%)</strong>. The main sources of <strong>Sadness</strong> were <strong>Grief Support Group</strong> (<strong>12</strong> posts) and <strong>User123</strong> (<strong>7</strong> posts). Their content often revolved around personal stories, such as <em>'coping with loss during the holidays.'</em></p>
+            Generate the summary now.
+        """

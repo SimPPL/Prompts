@@ -1,0 +1,20 @@
+    async def generate_engagement_distribution_summary(title: str, platform: str, engagement_data: List[Dict]) -> str:
+        """
+        Generate a comprehensive two-stage summary for engagement distribution analysis.
+        
+        Stage 1: Analyze basic engagement metrics and identify key dates with anomalies
+        Stage 2: Deep-dive analysis of top posts and contributors for identified key dates
+        
+        Args:
+            title: Search Query
+            platform: Platform name
+            engagement_data: Full engagement distribution data with top_posts and top_contributors
+            
+        Returns:
+            Comprehensive summary combining both analysis stages
+        """
+
+
+
+
+        
