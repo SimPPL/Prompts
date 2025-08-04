@@ -1,0 +1,25 @@
+        prompt = f"""
+        Analyze the following metric and provide a concise, professional summary.
+
+                - Title: {title}
+                - Data Snapshot: {data_snapshot}
+
+                Summary Requirements:
+                1. Clearly highlight the most significant patterns or trends.
+                2. Identify any anomalies or unexpected behavior.
+                3. Describe the overall direction (e.g., increasing, decreasing, stable).
+                4. Mention key peaks, dips, or outliers.
+                5. Provide comparisons across categories or time periods when relevant.
+                6. Use specific data points from the input to support your observations.
+                7. Wrap each value and important sentence in <em> tags and enclose it in double quotes, e.g., <em>"views peaked at 1,500"</em>. This formatting must be applied consistently to all referenced figures or key statements.
+
+                Constraints:
+                - Output must be 1-2 sentences.
+                - Use clear, professional language.
+                - Avoid vague statements, unnecessary jargon, or overly technical terms.
+
+                Example Output:
+                <p>Views increased steadily, <em>"reaching 1,200"</em> midweek before <em>"dropping to 600"</em> by the weekend.</p>
+
+                Now generate the summary using this HTML structure.
+        """

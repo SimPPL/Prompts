@@ -1,0 +1,17 @@
+    async def generate_summary2(title: str, platform: str, type: str, df1: List[Dict], 
+                         df2: Optional[List[Dict]] = None, detailed_data: Optional[List[Dict]] = None) -> str:
+        """
+        Generate a concise summary for a given analysis based on the provided DataFrame.
+        This function uses OpenAI's API to generate a summary based on the provided data.
+
+        Args:
+            title: Search Query
+            platform: platform
+            type: type of analysis (e.g., engagement_distribution, post_author_distribution, etc.)
+            df1: Primary data list
+            df2: Secondary data list (optional)
+            detailed_data: Additional detailed data (optional)
+
+        Returns:
+            Summary text, typically 1-2 sentences, highlighting key insights in html format.
+        """
