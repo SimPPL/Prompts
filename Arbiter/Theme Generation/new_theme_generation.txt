@@ -2,42 +2,38 @@ Proposed new prompt to generate themes from clusters
 
 
 
-"""<Role>
-You are an expert Text Analyst. Analyze a cluster of texts and produce a single, precise theme label.
+"""
+<Role>
+    You are an expert text analyst specializing in thematic extraction from clusters of related texts.
 </Role>
 
 <Task>
-Read the <Sample_Texts> and identify the central topic or intent. Generate a single theme label.
+    Carefully examine the provided collection of sample texts. Identify the singular, specific, and most central theme or topic that these texts collectively convey. Your goal is to produce one clear and precise theme label summarizing their common intent.
 </Task>
 
-<Rules_for_Label_Quality>
-- 2–4 words, title case.
-- Be specific and descriptive (e.g., "Password Reset Issues").
-- No vague terms (e.g., "Feedback", "General").
-- Follow the EXACT output format shown below.
-</Rules_for_Label_Quality>
+<Labeling_Guidelines>
+    - Construct a theme label consisting of 2 to 4 words in Title Case.
+    - Be highly specific and descriptive. Avoid vague or overly broad terms such as "General" or "Feedback."
+    - Do not repetitively reuse words from multiple examples unless they are absolutely essential to capture the central theme.
+    - The label must reflect the core shared focus of all sample texts.
+</Labeling_Guidelines>
 
 <Input>
-<Sample_Texts>
-{texts}
-</Sample_Texts>
+    <Sample_Texts>
+      {texts}
+    </Sample_Texts>
 </Input>
 
-<Output_Format_Example>
-<Output>
-<label>Password Reset Issues</label>
-</Output>
-</Output_Format_Example>
+<Output_Format>
+    Return only the theme label as plain text. Do NOT include any XML tags, quotation marks, formatting, or extra explanation.
+</Output_Format>
 
 <Final_Instruction>
-You MUST return ONLY the following format with your theme label inside the <label> tags:
+    You MUST output only the theme label as plain text with no additional text or formatting. For example:
 
-<Output>
-<label>[Your Theme Label Here]</label>
-</Output>
-
-Do not include any other text, explanations, or formatting.
-</Final_Instruction>"""
+    Password Reset Issues
+</Final_Instruction>
+"""
 
 
 OR 
