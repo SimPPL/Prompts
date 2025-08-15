@@ -12,16 +12,16 @@ Analyze the provided group engagement distribution data to:
 7. When calculating ratios such as engagement-per-post, use: total_engagement ÷ total_posts, rounded to 1 decimal place (e.g., <em>"4.2 engagement/post"</em>).
 
 **Input:**
-- **Platform:** {platform}
-- **Search Query:** {search_query}
+- **Platform:** {{platform}}
+- **Search Query:** {{search_query}}
 - **Data:**
-  - **All Groups:** {data.all_groups}
-  - **Top 3 Groups Details:** {data.top_3_groups}
-  - **Summary Metrics:** {data.summary_metrics}
+  - **All Groups:** {{data.all_groups}}
+  - **Top 3 Groups Details:** {{data.top_3_groups}}
+  - **Summary Metrics:** {{data.summary_metrics}}
 
 **Output Requirements:**
-- Produce a clear, professional summary of exactly 3-4 sentences in a single HTML `<p>` block.
-- Use `<em>` tags with quotes for all key statistics and meaningful percentages (e.g., <em>\"45% of total engagement\"</em>).
+- Produce a clear, professional summary of exactly 5 sentences in a single HTML `<p>` block.
+- Use `<em>` tags with quotes for all key statistics and meaningful percentages (e.g., <em>"45% of total engagement"</em>).
 - Use contextually appropriate terms like "leading groups", "dominant group", and "top performing groups".
 - Avoid mentioning sample post counts as totals or making strategic advice or recommendations.
 - Present factual, comparative analysis based on the data without speculation.

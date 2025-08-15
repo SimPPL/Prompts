@@ -19,8 +19,8 @@ Analyze how posts are distributed across groups and how posting activity relates
 - **Summary Metrics:** {{data.summary_metrics}}
 
 **Output Requirements:**
-- Produce a clear, professional summary of exactly 3-4 sentences in a single HTML <p> block.
-- Use <em> tags with quotes for all key statistics and meaningful percentages (e.g., <em>\"45% of total posts\"</em>).
+- Produce a clear, professional summary of exactly 5 sentences in a single HTML `<p>` block.
+- Use `<em>` tags with quotes for all key statistics and meaningful percentages (e.g., <em>"45% of total posts"</em>).
 - Use contextually appropriate terms like "leading posts", "dominant post", and "top performing posts".
 - Avoid mentioning sample post counts as totals or making strategic advice or recommendations.
 - Present factual, comparative analysis based on the data without speculation.
@@ -32,5 +32,5 @@ Analyze how posts are distributed across groups and how posting activity relates
 - Present facts only; avoid speculation beyond provided data.
 - Maintain chronological clarity when describing events.
 
-=== Example Output ===
+**Example Output:**
 <p>Across <em>"15 groups"</em>, posting activity is concentrated among a few leaders, with the top 3 accounting for <em>"62%"</em> of all posts. The most active group, <em>"TechTalk"</em>, produced <em>"1,420 posts"</em>, representing <em>"28.5%"</em> of all posts in the dataset. Comparing efficiency, <em>"TechTalk — 1,420 posts, 6,380 engagement, 4.5 engagement/post"</em>, <em>"DevForum — 1,120 posts, 8,960 engagement, 8.0 engagement/post"</em>, and <em>"AI_Lounge — 980 posts, 3,430 engagement, 3.5 engagement/post"</em> reveal that <em>"DevForum"</em> achieves nearly double the efficiency of the top poster despite fewer posts. Notably, the top poster’s engagement-per-post is below the dataset’s average, suggesting volume is not translating into proportional engagement.</p>

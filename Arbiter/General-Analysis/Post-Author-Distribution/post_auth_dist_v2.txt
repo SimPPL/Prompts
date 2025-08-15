@@ -13,20 +13,20 @@ Analyze the provided temporal engagement and posting data to:
 5. Present correlations between post volume and engagement efficiency, highlighting author efficiency scores and user overlap between top posters and engagement drivers.
 
 **Input:**
-- **Title:** {title}
-- **Platform:** {platform}
-- **Search Query:** {search_query}
-- **Average Engagement:** {engagement}
-- **Average Comments:** {comments}
+- **Title:** {{title}}
+- **Platform:** {{platform}}
+- **Search Query:** {{search_query}}
+- **Average Engagement:** {{engagement}}
+- **Average Comments:** {{comments}}
 - **Detailed Data:**
-  - **Daily Overview:** {data.daily_overview}
-  - **Top Users Analysis:** {data.top_users_analysis}
-  - **Correlation Analysis:** {data.correlation_analysis}
-  - **Summary Metrics:** {data.summary_metrics}
+  - **Daily Overview:** {{data.daily_overview}}
+  - **Top Users Analysis:** {{data.top_users_analysis}}
+  - **Correlation Analysis:** {{data.correlation_analysis}}
+  - **Summary Metrics:** {{data.summary_metrics}}
 
 **Output Requirements:**
-- Generate a summary as a single HTML `<p>` block containing 3-4 sentences.
-- Wrap every key figure, date, percentage, and notable insight in `<em>` tags with quotes (e.g., <em>\"9,000 daily engagement\"</em>).
+- Generate a summary as a single HTML `<p>` block containing 5 sentences.
+- Wrap every key figure, date, percentage, and notable insight in `<em>` tags with quotes (e.g., <em>"9,000 daily engagement"</em>).
 - Present the insights in chronological order where relevant, maintaining clarity of cause and effect.
 - Avoid unnecessary repetition of data points but ensure clarity and coherence.
 - Use clear and natural professional language that feels conversational yet authoritative.

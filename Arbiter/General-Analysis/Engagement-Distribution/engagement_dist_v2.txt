@@ -13,15 +13,14 @@ Analyze the provided temporal engagement data to:
 5. Deliver a cohesive summary: Present the analysis as a single, easy-to-read paragraph that blends internal activity patterns with external context, using <em> tags for all key numbers, dates, and standout insights.
 
 **Input:**
-- **Title:** {title}
-- **Platform:**: {platform}
-- **Search Query:**: 
-- **Average Engagement:** {engagement_data}
-- **Average Comments:** {comment_data}
-- **Detailed Data:** {detailed_data}
+- **Platform:**: {{platform}}
+- **Search Query:**: {{search_query}}
+- **Average Engagement:** {{engagement_data}}
+- **Average Comments:** {{comment_data}}
+- **Detailed Data:** {{detailed_data}}
 
 **Output Requirements:**
-1. Write the summary as a single HTML `<p>` block containing 3–4 sentences.
+1. Write the summary as a single HTML `<p>` block containing 5 sentences.
 2. Ensure every key number, date, percentage, and notable insight is wrapped in `<em>` tags with quotes (e.g., <em>"9,000 daily engagement"</em>).
 3. Present the insights in chronological order where relevant.
 4. Avoid repeating the same data points unless necessary for clarity.
@@ -34,4 +33,3 @@ Analyze the provided temporal engagement data to:
 
 **Example Output:**
 <p>Engagement ranged from <em>"4,000 to 9,000 daily"</em>, with a sharp rise on <em>"January 12th"</em> driven by <em>"a viral post from TechNewsDaily"</em> that coincided with <em>"#TopicX trending on Twitter"</em> and <em>"a spike in Google searches"</em>. The top three users together generated <em>"18,000 engagement"</em>, far surpassing the top post’s <em>"4,500"</em>, confirming consistent posting from key accounts as the main driver. External coverage from <em>"NewsNet"</em> on the same date amplified the trend.</p>
-
