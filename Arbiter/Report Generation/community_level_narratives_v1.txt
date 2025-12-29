@@ -1,0 +1,293 @@
+    (
+        "system",
+        """You are a political discourse analyst mapping community polarization and entity framing patterns. Focus on how different communities discuss the same entities with divergent sentiment and framing."""
+    ),
+    (
+        "human",
+        """You are writing the **Community-Level Narratives** section. Analyze how communities frame entities differently and operate in information silos.
+
+
+**COMMUNITY DISTRIBUTION ANALYSIS**
+
+The community distribution will be populated from structured data. Focus on analyzing the thematic patterns that emerge from these communities.
+
+**YOUR ANALYSIS TABLE (Use actual data from provided context):**
+| Community | Size | Key Actors | Primary Entities Discussed | Focus | Tone |
+|-----------|------|------------|----------------------------|-------|------|
+| [Actual Community 1] | [Actual %] | [Actual Key Actors] | [Actual Entities with Sentiment] | [Actual Focus Areas] | [Actual Tone] |
+| [Actual Community 2] | [Actual %] | [Actual Key Actors] | [Actual Entities with Sentiment] | [Actual Focus Areas] | [Actual Tone] |
+| [Actual Community 3] | [Actual %] | [Actual Key Actors] | [Actual Entities with Sentiment] | [Actual Focus Areas] | [Actual Tone] |
+| [Actual Community 4] | [Actual %] | [Actual Key Actors] | [Actual Entities with Sentiment] | [Actual Focus Areas] | [Actual Tone] |
+| [Actual Community 5] | [Actual %] | [Actual Key Actors] | [Actual Entities with Sentiment] | [Actual Focus Areas] | [Actual Tone] |
+
+
+**THEMATIC ANALYSIS: CROSS-PLATFORM NARRATIVE PATTERNS**
+
+Building on the community distribution patterns, the following thematic analysis reveals how these communities engage with dominant narratives across different platforms, keep in mind I have data from only 4 platforms Bluesky,Reddit,Youtube and Twitter(X) for now .
+
+**IMPORTANT CITATION RULES**
+- Only include citations if REAL post_links are available for that theme or sub-theme.
+- If no citations exist for that theme/sub-theme:
+    • Do NOT insert placeholders like example1, example2, reddit.com/example.
+    • Do NOT hallucinate URLs.
+    • Simply write the narrative without any citation brackets.
+- You must NEVER include empty citation brackets or dummy URLs.
+
+**THEME 1: [THEME TITLE]**
+[Post count] posts | [Sentiment percentage] [sentiment type] [additional context]
+**Central entities:** [Key entities with sentiment context]
+**Community engagement:** [Community breakdown with percentages and key actors]
+
+
+**Key narratives within theme:**
+[A) Sub-theme 1 (post count, sentiment):
+ Detailed description of narrative, key events, amplification patterns, critical observations]
+
+
+[B) Sub-theme 2 (post count, sentiment):
+  Detailed description of narrative, key events, amplification patterns, critical observations]
+
+
+[C) Sub-theme 3 (post count, sentiment):
+  Detailed description of narrative, key events, amplification patterns, critical observations]
+
+
+**Cross-community divergence:**
+[Analysis of which groups participate/avoid the theme, representation gaps, strategic silence]
+
+
+**Narrative gap:**
+[Analysis of which voices are missing, strategic silences, and what the absence of certain perspectives reveals]
+
+
+**Strategic significance:**
+[Why this theme matters, power dynamics, and broader implications]
+
+
+**Platform distribution:**
+[Primary platforms for this theme and their respective engagement patterns]
+
+
+**THEME 2: [THEME TITLE]**
+[Post count] posts | [Sentiment percentage] [sentiment type] [additional context]
+**Central entities:** [Key entities with sentiment context]
+**Community engagement:** [Community breakdown with percentages and key actors]
+
+
+**Key narratives within theme:**
+[A) Sub-theme 1 (post count, sentiment):
+ Detailed description of narrative, key events, amplification patterns, critical observations]
+
+
+[B) Sub-theme 2 (post count, sentiment):
+  Detailed description of narrative, key events, amplification patterns, critical observations]
+
+
+[C) Sub-theme 3 (post count, sentiment):
+  Detailed description of narrative, key events, amplification patterns, critical observations]
+
+
+**Cross-community divergence:**
+[Analysis of which groups participate/avoid the theme, representation gaps, strategic silence]
+
+
+**Narrative gap:**
+[Analysis of which voices are missing, strategic silences, and what the absence of certain perspectives reveals]
+
+
+**Strategic significance:**
+[Why this theme matters, power dynamics, and broader implications]
+
+
+**Platform distribution:**
+[Primary platforms for this theme and their respective engagement patterns]
+
+
+**THEME 3: [THEME TITLE]**
+[Post count] posts | [Sentiment percentage] [sentiment type] [additional context]
+**Central entities:** [Key entities with sentiment context]
+**Community engagement:** [Community breakdown with percentages and key actors]
+
+
+**Key narratives within theme:**
+[A) Sub-theme 1 (post count, sentiment):
+  Detailed description of narrative, key events, amplification patterns, critical observations]
+
+
+[B) Sub-theme 2 (post count, sentiment):
+  Detailed description of narrative, key events, amplification patterns, critical observations]
+
+
+[C) Sub-theme 3 (post count, sentiment):
+  Detailed description of narrative, key events, amplification patterns, critical observations]
+
+
+**Cross-community divergence:**
+[Analysis of which groups participate/avoid the theme, representation gaps, strategic silence]
+
+
+**Narrative gap:**
+[Analysis of which voices are missing, strategic silences, and what the absence of certain perspectives reveals]
+
+
+**Strategic significance:**
+[Why this theme matters, power dynamics, and broader implications]
+
+
+**Platform distribution:**
+[Primary platforms for this theme and their respective engagement patterns]
+
+
+**THEME 4: [THEME TITLE]**
+[Post count] posts | [Sentiment percentage] [sentiment type] [additional context]
+**Central entities:** [Key entities with sentiment context]
+**Community engagement:** [Community breakdown with percentages and key actors]
+
+
+**Key narratives within theme:**
+[A) Sub-theme 1 (post count, sentiment):
+  Detailed description of narrative, key events, amplification patterns, critical observations]
+
+
+[B) Sub-theme 2 (post count, sentiment):
+  Detailed description of narrative, key events, amplification patterns, critical observations]
+
+
+[C) Sub-theme 3 (post count, sentiment):
+  Detailed description of narrative, key events, amplification patterns, critical observations]
+
+
+**Cross-community divergence:**
+[Analysis of which groups participate/avoid the theme, representation gaps, strategic silence]
+
+
+**Narrative gap:**
+[Analysis of which voices are missing, strategic silences, and what the absence of certain perspectives reveals]
+
+
+**Strategic significance:**
+[Why this theme matters, power dynamics, and broader implications]
+
+
+**Platform distribution:**
+[Primary platforms for this theme and their respective engagement patterns]
+
+
+**THEME 5: [THEME TITLE]**
+[Post count] posts | [Sentiment percentage] [sentiment type] [additional context]
+**Central entities:** [Key entities with sentiment context]
+**Community engagement:** [Community breakdown with percentages and key actors]
+
+
+**Key narratives within theme:**
+[A) Sub-theme 1 (post count, sentiment):
+  Detailed description of narrative, key events, amplification patterns, critical observations]
+
+
+[B) Sub-theme 2 (post count, sentiment):
+  Detailed description of narrative, key events, amplification patterns, critical observations]
+
+
+[C) Sub-theme 3 (post count, sentiment):
+  Detailed description of narrative, key events, amplification patterns, critical observations]
+
+**Cross-community divergence:**
+[Analysis of which groups participate/avoid the theme, representation gaps, strategic silence]
+
+
+**Narrative gap:**
+[Analysis of which voices are missing, strategic silences, and what the absence of certain perspectives reveals]
+
+
+**Strategic significance:**
+[Why this theme matters, power dynamics, and broader implications]
+
+
+**Platform distribution:**
+[Primary platforms for this theme and their respective engagement patterns]
+
+
+**EXAMPLE STRUCTURE FROM PROVIDED DATA:**
+
+
+**THEME 4: LEADERSHIP AND NATIONAL TRANSFORMATION**  
+131 posts | 68% positive toward leadership, 32% neutral (factual reporting)  
+**Central entities:** President William Ruto (70% pos), National Development Plans (60% pos), Economic policies (55% pos)  
+**Community engagement:** Supporters (75% of theme volume): pro-government influencers, development advocates; Opposition & critics (15%): political analysts, opposition leaders; Neutral media (10%): factual reporting  
+
+**Key narratives within theme:**  
+A) Vision for Development (60 posts, 70% positive):  
+Supporters highlight Ruto's vision for national development, emphasizing infrastructure projects and economic growth initiatives. "New highway construction progress" showcased infrastructure achievements, while "Economic growth projections" highlighted positive economic indicators. This narrative is amplified through government channels and pro-government media.
+
+B) Social Change Initiatives (40 posts, 65% positive):  
+Discussions around social change initiatives led by Ruto's administration focus on education and health reforms. "Education reform announcement"  generated significant engagement, with supporters arguing these efforts signify a commitment to improving citizens' lives. "Healthcare access improvements" demonstrated tangible benefits of government programs.
+
+C) Long-term Goals (31 posts, 60% positive):  
+Supporters discuss Ruto's long-term goals for the nation, framing them as transformative. "2030 development vision" outlined strategic objectives, while "Sustainable development framework" provided detailed policy roadmaps. This narrative is often supported by success stories and positive outcomes from implemented policies.
+
+**Cross-community divergence:**  
+Critics largely avoid engaging with this theme, indicating a strategic silence on positive narratives that could undermine their critiques. Pro-government voices dominate the discourse with minimal opposition counter-narratives.
+
+**Narrative gap:**  
+Moderate voices that could provide a balanced view on national transformation efforts are missing, suggesting a lack of dialogue on the effectiveness of these initiatives. Independent policy analysts and implementation monitoring voices are notably absent.
+
+**Strategic significance:**  
+This theme underscores the potential for Ruto to frame his leadership as a catalyst for national transformation, which could resonate with voters seeking change and development progress.
+
+**Platform distribution:**  
+Twitter dominates discussion (65% of posts), with YouTube hosting detailed policy explanations (25%) and Facebook facilitating community engagement (10%).
+
+---
+
+**THEME 5: CORRUPTION ALLEGATIONS AGAINST RUTO**  
+123 posts | 80% negative toward leadership, 20% neutral (factual reporting)  
+**Central entities:** President William Ruto (85% neg), Government officials (75% neg), Corruption scandals (80% neg)  
+**Community engagement:** Opposition & critics (80% of theme volume): political analysts, opposition leaders, activist groups; Supporters (10%): pro-government commentators; Neutral media (10%): factual reporting  
+
+**Key narratives within theme:**  
+A) Scandal Reports (60 posts, 85% negative):  
+Critics focus on specific corruption scandals linked to Ruto, amplifying narratives through investigative journalism and social media campaigns. "Contract award investigation" revealed questionable procurement processes, while "Financial misconduct allegations" detailed specific corruption claims. The sentiment is overwhelmingly negative, with a strong emphasis on accountability.
+
+B) Public Outcry (40 posts, 75% negative):  
+Discussions around public reactions to corruption allegations highlight widespread discontent. "Anti-corruption protest coverage" showed mass mobilization against graft, while "Social media campaign demanding accountability" demonstrated digital activism. Key events amplify this narrative, showcasing a collective demand for accountability and transparency.
+
+C) Impact on Governance (23 posts, 70% negative):  
+Critics argue that corruption allegations undermine governance and public trust. "Governance integrity analysis" examined systemic corruption effects, while "Public trust survey results" highlighted declining confidence in institutions. This narrative is often supported by data and reports from watchdog organizations, emphasizing the need for reform and institutional strengthening.
+
+**Cross-community divergence:**  
+Pro-government voices contribute minimally to this theme, indicating a strategic silence on corruption allegations that could damage Ruto's reputation. Opposition dominates the discourse with limited engagement from administration defenders.
+
+**Narrative gap:**  
+Voices from moderate supporters who might acknowledge the need for accountability while defending Ruto are missing, suggesting a reluctance to engage with uncomfortable truths. Independent anti-corruption advocates with balanced perspectives are notably absent.
+
+**Strategic significance:**  
+This theme highlights the critical challenges Ruto faces regarding public trust and governance integrity, which could have significant implications for his political future and administration credibility.
+
+**Platform distribution:**  
+Twitter leads real-time allegations (70% of posts), YouTube hosts investigative documentaries (20%), and Reddit facilitates detailed discussion threads (10%).
+
+
+**CRITICAL REQUIREMENTS:**
+- Analyze exactly 5 themes with detailed sub-themes
+- Include at least 2 post citations per sub-theme (6+ citations per theme)
+- Provide specific examples with detailed descriptions in each sub-theme
+- Ensure communities and entities match the actual data provided
+- Use different post citations across all themes
+- You must ONLY use real post_links provided in the data.
+- NEGATIVE CONSTRAINT: NEVER use placeholders like "example.com", "twitter.com/example", "x.com/user", or "example1". 
+- If no specific post link is available for a claim, DO NOT invent one. Just state the claim without a bracketed link.
+
+
+**Available Data Inputs:**
+Community Distribution: {community_distribution}
+Entity Sentiment by Community: {entity_sentiment_analysis}
+Key Actors by Community: {key_actors_data}
+Theme Distribution: {theme_distribution}
+Platform Engagement: {platform_engagement}
+Event Context: {event_context}
+Sentiment Metrics: {sentiment_metrics}
+
+
+Now analyze the community polarization and thematic patterns using the exact structure above, including the filled table with actual data and detailed post citations across 5 themes.
+"""
+    )

@@ -1,0 +1,14 @@
+Based on question: '{question}' and results: {es_result[:6]}, generate chart data.
+
+Return null if visualization not helpful or data too sparse.
+
+Chart types available:
+1. BAR: Compare quantities across categories
+2. LINE: Show trends over time  
+3. PIE: Show proportional breakdowns
+4. RADAR: Compare multiple metrics per category
+
+Generate at most one chart per unique data combination.
+Avoid duplicate charts with same fields/categories.
+
+Use ChartRecommendation format with exact field requirements.

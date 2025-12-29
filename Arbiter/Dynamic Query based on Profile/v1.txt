@@ -1,0 +1,88 @@
+Recent Trending News Entities:
+- {news_entities or "No trending entities found"}
+
+User Profile:
+- Regions of interest: {", ".join(regions) if regions else "Global"}
+- Topics of interest: {", ".join(interests) if interests else "General topics"}
+- Keywords to track: {", ".join(keywords) if keywords else "None specified"}
+
+Task:
+Generate 5 concise, search-oriented queries this user would be interested in,
+using a mix of the recent trending news entities, user's interests, keywords, and regions.
+
+RULES:
+1. Queries must be **search-style phrases**, not full questions.  
+   - Example: "IPL auction 2025 results" 
+   - Not: "What are the results of the IPL auction 2025?" 
+
+2. Queries must be **specific and actionable**, not too generic or too complex.  
+   - Avoid vague terms like "latest news India".  
+   - Avoid overly academic/technical phrasing.  
+
+3. Mix categories naturally:  
+   - Some queries should use **single categories** (e.g., only politics).  
+   - Some should combine **2 categories** (e.g., AI + healthcare).  
+   - Some should combine **3–5 categories** (e.g., politics + economics + climate).  
+   - Occasionally, use **6+ categories** for complex, multi-dimensional queries.  
+   - Include **niche/specialized categories** (e.g., bioinformatics, fintech).  
+   - Include **Hinglish queries** (mix of Hindi + English).  
+
+4. Queries must be **timely and relevant** (imply recent events, trends, or updates).  
+
+5. Always return **exactly 5 queries**, one per line, no numbering, no bullet points.  
+
+---
+
+EXAMPLES:
+
+SINGLE CATEGORY:
+- "Modi latest speech highlights"
+- "ChatGPT new features 2025"
+- "Bollywood box office weekend"
+- "vaccine policy updates India"
+- "IPL auction 2025 results"
+
+DUAL CATEGORY:
+- "AI medical diagnosis India approval"
+- "budget 2025 startup benefits"
+- "OTT platform revenue India"
+- "cricket analytics AI usage"
+- "green energy election promises"
+
+MULTI CATEGORY (3–5 topics):
+- "Indian healthtech AI funding rounds"
+- "carbon tax budget announcement"
+- "Bollywood AI dubbing controversy"
+- "IPL fantasy gaming revenue"
+- "Indian gaming company IPO news"
+
+COMPLEX MULTI-CATEGORY (6+ topics):
+- "AIIMS AI research startup collaboration policy"
+- "renewable energy foreign investment policy changes"
+- "Indian OTT global expansion strategy content"
+- "BCCI data analytics partnership revenue model"
+- "Indian gaming addiction education policy schools"
+
+NICHE SPECIALIZED:
+- "CRISPR gene therapy India clinical trials"
+- "UPI international expansion news"
+- "drone farming policy Maharashtra"
+- "solar panel manufacturing PLI scheme"
+- "Indian quantum research funding announcement"
+
+HINGLISH EXAMPLES:
+- "IPL auction mein konsa player sabse expensive"
+- "Startup funding India mein kya latest trends"
+- "AI jobs India mein kaise impact karega"
+- "Bollywood mein South movies ka dominance kyu"
+- "Crypto regulation India mein kab aayega"
+- "Electric vehicle subsidy scheme kab launch"
+- "Digital rupee pilot program kaise chal raha"
+- "IT sector layoffs India mein kya situation"
+- "Space mission ISRO ka next kya plan"
+- "Gaming ban states mein kya latest update"
+
+---
+
+Format:
+Return only 5 queries, one per line, no numbering, no bullet points.

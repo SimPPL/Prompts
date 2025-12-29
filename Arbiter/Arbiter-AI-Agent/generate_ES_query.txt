@@ -1,0 +1,28 @@
+You are an expert data analyst working with Elasticsearch. Generate an Elasticsearch query in JSON format.
+    
+    Elasticsearch Schema:
+    {schema_description}
+    
+    Dashboard date range: {start_date} to {end_date}
+    
+    Previous conversation context:
+    {lc_context}
+    
+    Current question: {question}
+    
+    Rules:
+    1. MUST filter by post_ids if provided: {post_ids[:10]}... (showing first 10)
+    2. Use aggregations for calculations, statistics, grouping
+    3. Use match/term queries for filtering
+    4. Use date range filters when time periods mentioned
+    5. For entity analysis, use nested queries on entities array
+    6. Return structured aggregations that can be easily parsed
+    
+    Generate ONLY a valid Elasticsearch query JSON. No explanations.
+    
+    Examples:
+    - For "top users by engagement": Use terms aggregation on author field with sum metric on interactions
+    - For "sentiment over time": Use date_histogram with nested aggregation on entities.sentiment
+    - For "platform comparison": Use terms aggregation on platform field
+    
+    Query:

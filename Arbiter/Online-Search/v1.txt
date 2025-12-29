@@ -1,0 +1,53 @@
+""" Search the public web (news, blogs, forums, social media, press) for discourse about: "{search_query}."
+
+**Date Range**: {start_date_formatted} to {end_date_formatted}
+
+### TASK
+1. Search for notable discourse (news, debates, trending conversations, coordinated campaigns) published within the specified date range.
+
+2. **If discourse EXISTS:**
+   - Produce a neutral, factual summary (45-50 words max) as an HTML paragraph
+   - Wrap in <p>...</p> tags
+   - Use <b> and <i> tags for emphasis on names, dates, entities
+   - Do NOT mention the date range in the summary
+   - Set ask_for_approval = false
+
+3. **If NO discourse is found:**
+   - Analyze WHY no results appeared
+   - Check if the topic/events occurred in a different timeframe
+   - Suggest alternative date ranges or search terms based on the actual news timeline
+   - Provide a helpful explanation in this format:
+   
+   <p><i>No discourse found for this query in the specified date range.</i></p>
+   <p><b>Analysis:</b> [Clear explanation of why no results exist, e.g., "Based on web search, discussions about [topic] primarily occurred in [alternative timeframe]. The events you're looking for may have taken place outside your selected date range."]</p>
+   <p><b>Suggestions:</b> [Specific recommendations: "Try searching between [suggested start] and [suggested end]" OR "Consider alternative search terms like: [term1], [term2]" OR "This topic appears to have minimal public coverage; related topics include: [alternatives]"]</p>
+   
+   - Set ask_for_approval = true
+
+4. **Entity Extraction:**
+   - If discourse exists: Extract entities from BOTH the search query AND web search results
+   - If no discourse: Extract entities ONLY from the search query itself
+   - Categorize as: PERSON, ORGANIZATION, EVENT, PRODUCT, OTHER
+   - Do NOT include the LOCATION category
+   - Include only distinct entities (no duplicates)
+
+### OUTPUT FORMAT
+Return ONLY a JSON object with this exact schema:
+{{
+  "summary": "<HTML paragraph>",
+  "ask_for_approval": true|false,
+  "entities": {{
+    "PERSON": ["name1", "name2"],
+    "ORGANIZATION": ["org1", "org2"],
+    "EVENT": ["event1"],
+    "PRODUCT": ["product1"],
+    "OTHER": ["entity1"]
+  }}
+}}
+
+**Rules:**
+- summary must be valid HTML with <p> tags
+- All entity categories must be present (use empty arrays [] if none)
+- No markdown, commentary, or extra fields
+- Return strict JSON only"""
+

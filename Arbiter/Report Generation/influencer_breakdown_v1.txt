@@ -1,0 +1,122 @@
+    (
+        "system",
+        """You are a media analyst mapping who has influence and how they use it. Use very simple, clear language that anyone can understand."""
+    ),
+    (
+        "human",
+        """You are writing the **Influencer Impact Analysis** section. Show who drives the conversation and how they shape the story.
+
+**OUTPUT FORMAT - FOLLOW THIS EXACT STRUCTURE:**
+
+**TOP 5 INFLUENCERS**
+
+| Rank | Actor | Reach | Primary Entities Discussed | Content Focus | Top Post | Influence Type |
+|------|-------|-------|----------------------------|---------------|----------|---------------|
+| 1 | [Actor 1] | [%] | [Actual Entities] | [Main topics] | [Post description] [URL] | [What they do] |
+| 2 | [Actor 2] | [%] | [Actual Entities] | [Main topics] | [Post description] [URL] | [What they do] |
+| 3 | [Actor 3] | [%] | [Actual Entities] | [Main topics] | [Post description] [URL] | [What they do] |
+| 4 | [Actor 4] | [%] | [Actual Entities] | [Main topics] | [Post description] [URL] | [What they do] |
+| 5 | [Actor 5] | [%] | [Actual Entities] | [Main topics] | [Post description] [URL] | [What they do] |
+
+**ANALYSIS**
+
+**Who Controls the Conversation:**
+[Simple sentence about who has the most reach and attention]
+
+**How They Shape the Story:**
+• [Bullet point about how different groups frame the conversation]
+• [Bullet point about content strategies that work]
+• [Bullet point about audience preferences]
+
+**Key Changes Happening:**
+• [What's rising in influence]
+• [What's declining in reach] 
+• [New patterns emerging]
+
+**What This Means:**
+[Simple summary of the main shift happening]
+
+**STRATEGIC INSIGHTS**
+
+**Who Has Power:**
+[Simple version of influence concentration - who controls attention]
+
+**How Power Works:**
+[Simple version of power alignment - how different groups use their influence]
+
+**What's Changing:**
+[Simple version of emerging patterns - new ways people are gaining influence]
+
+**Trust Issues:**
+[Simple version of credibility dynamics - who people trust and why]
+
+**Big Picture:**
+[Simple version of strategic implication - what this means for the future]
+
+**EXAMPLES OF SIMPLE LANGUAGE (Reference only - use your own words):**
+
+**Who Controls the Conversation:**
+The top 5 voices control 32% of audience attention. Government supporters dominate by showing positive leadership moments, while critics gain traction by highlighting problems.
+
+**How They Shape the Story:**
+• Supporters focus on ceremonies and achievements
+• Critics concentrate on policy failures and promises  
+• Satire creators use humor to point out contradictions
+
+**Key Changes Happening:**
+• Independent creators are growing faster than traditional media
+• Video content gets more engagement than text posts
+• Younger audiences prefer humor over formal politics
+
+**What This Means:**
+The conversation is moving from formal politics to personal storytelling and humor.
+
+**STRATEGIC INSIGHTS EXAMPLE (Reference only - use your own words):**
+
+**Who Has Power:**
+A few voices control most of the attention. Top influencers reach 30% of the audience.
+
+**How Power Works:**
+Government supporters dominate by celebrating leadership, while critics focus on problems. Each side uses different strategies to connect with people.
+
+**What's Changing:**
+Individual creators are now reaching more people than established media on some topics. Humor works better than formal arguments for younger audiences.
+
+**Trust Issues:**
+Some media outlets show clear bias in their coverage, making people question their independence.
+
+**Big Picture:**
+Influence is shifting from traditional institutions to individual creators who feel more authentic to audiences.
+
+**REAL INFLUENCER DATA (DO NOT HALLUCINATE - USE THIS EXACT TABLE):**
+{top_authors}
+
+**CRITICAL REQUIREMENTS - FOLLOW EXACTLY:**
+1. **Use ONLY the data in the table above** - do NOT add other influencers
+2. **Use very simple language** - like explaining to a friend
+3. **Include all sections** in this exact order: Table, Analysis, Strategic Insights
+4. **Report exact percentages** shown in table - no rounding changes
+5. **Use real post URLs** from the table - do NOT create fake links
+6. **Keep sentences short and clear**
+7. **Focus on what actually matters** to readers
+8. **Do NOT invent content focus** - use what's in the table
+9. **Do NOT make up sentiment percentages** - use exact table values
+10. **Do not copy the examples** - use them as STYLE REFERENCE ONLY, your content comes from the REAL DATA TABLE above
+11. You must ONLY use real post_links provided in the data.
+12. NEGATIVE CONSTRAINT: NEVER use placeholders like "example.com", "twitter.com/example", "x.com/user", or "example1". 
+13. If no specific post link is available for a claim, DO NOT invent one. Just state the claim without a bracketed link.
+
+**Supporting Data Available:**
+• Who's talking: {top_authors}
+• How much reach: {reach_data}
+• What they're saying: {content_topics}
+• How people respond: {engagement_metrics}
+• Example posts: {post_examples}
+
+**YOUR TASK:**
+1. Reference the REAL INFLUENCER DATA table above
+2. Write analysis using ONLY that actual data
+3. Analyze WHY these influencers have power (based on real metrics)
+4. Do NOT invent influencers, posts, or statistics
+"""
+    )

@@ -1,0 +1,94 @@
+    (
+        "system",
+        """You are a political strategist. Use chain-of-thought reasoning:
+        
+THINK STEP BY STEP:
+1. Identify patterns in the data
+2. Analyze root causes and platform mechanics  
+3. Determine power shifts and affected stakeholders
+4. Connect to strategic implications
+5. Craft descriptive titles that capture the essence
+
+USE SIMPLE LANGUAGE AND PROVIDE CONCRETE PROOF FOR ALL CLAIMS WITH POST_LINK CITATIONS"""
+    ),
+    (
+        "human",
+        """Analyze this social media data and create an executive summary.
+
+**CHAIN OF THOUGHT - REASON THROUGH THESE QUESTIONS:**
+
+1. **PATTERN IDENTIFICATION:**
+   • What are the major engagement spikes? 
+   • Which platforms show different sentiment toward key entities?
+   • What themes and communities drive the conversation?
+
+2. **ROOT CAUSE ANALYSIS:**
+   • Why did these patterns emerge? (platform features, community behavior, real events)
+   • How do different actor groups shape narratives?
+   • How do platform algorithms affect content visibility?
+
+3. **POWER DYNAMICS:**
+   • Which communities gained/lost influence?
+   • How did sentiment toward specific entities change?
+   • What themes dominated the discourse?
+   • How did platform differences create different information environments?
+
+4. **STRATEGIC IMPLICATIONS:**
+   • What does this reveal about information ecosystems?
+   • How might this affect future political dynamics?
+
+**EXAMPLES OF SIMPLE PARAGRAPH FORMAT WITH PROOF:**
+
+**Comedy Becomes Main Opposition**
+Young people are using comedy videos to criticize the government because regular politics feels boring to them. Funny videos making fun of President Ruto's speeches got 16 times more views than normal political content [https://x.com/comedycreator/status/1834567890123456792]. On YouTube, 85% of comments under these videos criticized how Ruto speaks. This shows comedians are becoming more important than opposition politicians for young voters.
+
+**Two Different Worlds of News**
+People see completely different versions of Ruto depending on where they get news. On Twitter, government supporters share positive stories about Ruto's achievements [https://x.com/progovmedia/status/1834567890123456794] and 78% of tweets support him. But on YouTube, regular people post videos criticizing his decisions [https://x.com/criticalcreator/status/1834567890123456795] and 65% of comments are negative. This means urban Twitter users think Ruto is doing well while rural YouTube viewers think he's failing.
+
+**Foreign Media Tells Local Stories**
+Kenyan media avoids sensitive topics like police violence, so people turn to international news. Al Jazeera's report about broken police reform promises [https://x.com/aljazeera/status/1834567890123456796] got shared widely by citizen journalists. 82% of people discussing this topic online criticized police leaders. This shows Kenyans trust foreign media more than local media for sensitive stories.
+
+**Real Events Break Official Stories**
+When security forces messed up during a presidential event, videos of people walking away went viral [https://x.com/citizenjournalist/status/1834567890123456793]. 89% of people who saw these videos lost trust in Ruto's leadership in that region. This proves that when real events contradict official stories, people believe what they see with their own eyes.
+
+**Young Voices Change Politics**
+Students and young activists are using social media to talk about issues that matter to them. When a university student challenged Ruto's policies [https://x.com/studentactivist/status/1834567890123456797], the video got shared thousands of times. 75% of young people online supported the student's message. This shows that youth are finding new ways to influence politics outside traditional channels.
+
+**NOW APPLY THIS THINKING:**
+
+**ONE LINE SUMMARY:** [Easy-to-understand summary under 15 words]
+
+**BASELINE:** {baseline_calculation}
+
+**Key Strategic Insights:**
+[Create 5 insights in simple paragraph format. For each insight:
+- Give it a clear title
+- Write in simple, everyday language
+- Explain what happened and why it matters
+- Show how different platforms showed different reactions
+- Include post_link citations as proof for every claim
+- Always specify who people are criticizing or supporting]
+
+**CRITICAL REQUIREMENTS:**
+- Write exactly 5 strategic insights
+- Write in super simple language anyone can understand
+- Use paragraph format, not bullet points
+- Include post_link citations after every claim as proof
+- Show platform differences by saying "On Twitter... but on YouTube..."
+- Always specify "X% of people criticized/supported [specific person/group]"
+- Avoid complex words - if you must use them, prove them with citations
+- You must ONLY use real post_links provided in the data.
+- NEGATIVE CONSTRAINT: NEVER use placeholders like "example.com", "twitter.com/example", "x.com/user", or "example1". 
+- If no specific post link is available for a claim, DO NOT invent one. Just state the claim without a bracketed link.
+
+**Data Context:** 
+Platforms: {platform_overview}
+Communities: {community_distribution} 
+Themes: {theme_distribution}
+Actors: {key_actors_data}
+Sentiment: {sentiment_distribution}
+Available Post Links: {post_examples}
+
+Think through the patterns, then write your strategic insights using simple language and concrete proof with post_link citations.
+"""
+    )

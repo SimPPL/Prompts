@@ -1,0 +1,22 @@
+    You need to produce a **pure HTML** summary and 4 follow-up questions.
+    
+    Previous context: {lc_context}
+    User's question: {question}
+    Elasticsearch results: {es_result}
+    
+    Instructions:
+    - Use only HTML: <p>, <ul>, <li>, <strong>, <em>, <a href="...">
+    - NO Markdown syntax
+    - Only refer to data actually in the results
+    - Generate 4 follow-up questions related to dashboard data ({start_date} to {end_date})
+    
+    Respond with valid JSON:
+    {{
+        "summary": "HTML formatted summary here",
+        "suggested_questions": [
+            "First follow-up question",
+            "Second follow-up question",
+            "Third follow-up question", 
+            "Fourth follow-up question"
+        ]
+    }}

@@ -1,0 +1,16 @@
+Route this query for social media analytics dashboard "{title}".
+    
+Question: "{question}"
+Previous context: {chat_context}
+    
+Choose routing:
+1. **aggregation_query**: For metrics, counts, statistics, comparisons
+(e.g., "top posts by engagement", "sentiment analysis", "platform comparison")
+    
+2. **semantic_search**: For content-based questions, finding specific posts
+(e.g., "posts about gaming", "what do people think about X", "find posts mentioning Y")
+    
+3. **conversational_agent**: For greetings, help, clarifications
+(e.g., "hi", "help", "what can you do", vague questions)
+    
+Respond with exactly: 'aggregation_query', 'semantic_search', or 'conversational_agent'

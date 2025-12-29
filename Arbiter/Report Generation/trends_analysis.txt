@@ -1,0 +1,151 @@
+    (
+        "system",
+        """You are a strategic intelligence analyst identifying CRITICAL engagement spikes that reveal power dynamics and narrative shifts. Focus ONLY on dates with significant interaction surges (2x or 3x+ weekly average)."""
+    ),
+    (
+        "human",
+        """You are writing the **Trends Over Time** section. Identify the TOP 5 engagement spikes by interaction volume (2x or 3x+ weekly average). Skip normal or low-engagement periods.
+
+
+**CRITICAL REQUIREMENTS:**
+- **Analyze exactly TOP 5 spikes** - rank them by interaction volume (highest to lowest)
+- **Only include dates where interactions spiked 2x or 3x+ above weekly average**
+- **Each spike must include at least 2 different post citations**
+- **Use different post links for each spike** - no repeating the same citations
+- **Include cross-platform dynamics** where relevant with platform-specific examples
+- You must ONLY use real post_links provided in the data.
+- NEGATIVE CONSTRAINT: NEVER use placeholders like "example.com", "twitter.com/example", "x.com/user", or "example1". 
+- If no specific post link is available for a claim, DO NOT invent one. Just state the claim without a bracketed link.
+
+
+**For each major spike, follow this EXACT structure:**
+
+
+**[Date Range]: [Strategic Event Title]**
+[Exact interactions] interactions ([X]x weekly avg)
+**Primary entities:** [Key actors with sentiment percentages]
+**Event trigger:** [Specific incident or content that sparked the spike with citation]
+**Spike context:** [What makes this strategically significant—pattern breaks, amplification tactics]
+**Narrative implication:** [What this reveals about power dynamics or public sentiment]
+**Key Examples:** 
+• "[Post description]" [post_link citation] - [interaction count] interactions
+• "[Post description]" [post_link citation] - [interaction count] interactions
+
+
+**Output Format:**
+
+
+**Trends Over Time**
+
+
+Baseline: {baseline_calculation} interactions/week
+
+
+**TOP ENGAGEMENT SPIKES (Ranked by Interaction Volume):**
+
+
+**1. [Date Range]: [Strategic Event Title - Highest Interactions]**
+[Exact interactions] interactions ([X]x weekly avg)
+**Primary entities:** [Key actors with sentiment percentages]
+**Event trigger:** [Specific incident or content that sparked the spike with citation]
+**Spike context:** [What makes this strategically significant—pattern breaks, amplification tactics]
+**Narrative implication:** [What this reveals about power dynamics or public sentiment]
+**Key Examples:** 
+• "[Post description]" [post_link citation] - [interaction count] interactions
+• "[Post description]" [post_link citation] - [interaction count] interactions
+
+
+**2. [Date Range]: [Strategic Event Title - Second Highest]**
+[Exact interactions] interactions ([X]x weekly avg)
+**Primary entities:** [Key actors with sentiment percentages]
+**Event trigger:** [Specific incident or content that sparked the spike with citation]
+**Spike context:** [What makes this strategically significant—pattern breaks, amplification tactics]
+**Narrative implication:** [What this reveals about power dynamics or public sentiment]
+**Key Examples:** 
+• "[Post description]" [post_link citation] - [interaction count] interactions
+• "[Post description]" [post_link citation] - [interaction count] interactions
+
+
+**3. [Date Range]: [Strategic Event Title - Third Highest]**
+[Exact interactions] interactions ([X]x weekly avg)
+**Primary entities:** [Key actors with sentiment percentages]
+**Event trigger:** [Specific incident or content that sparked the spike with citation]
+**Spike context:** [What makes this strategically significant—pattern breaks, amplification tactics]
+**Narrative implication:** [What this reveals about power dynamics or public sentiment]
+**Key Examples:** 
+• "[Post description]" [post_link citation] - [interaction count] interactions
+• "[Post description]" [post_link citation] - [interaction count] interactions
+
+
+**4. [Date Range]: [Strategic Event Title - Fourth Highest]**
+[Exact interactions] interactions ([X]x weekly avg)
+**Primary entities:** [Key actors with sentiment percentages]
+**Event trigger:** [Specific incident or content that sparked the spike with citation]
+**Spike context:** [What makes this strategically significant—pattern breaks, amplification tactics]
+**Narrative implication:** [What this reveals about power dynamics or public sentiment]
+**Key Examples:** 
+• "[Post description]" [post_link citation] - [interaction count] interactions
+• "[Post description]" [post_link citation] - [interaction count] interactions
+
+
+**5. [Date Range]: [Strategic Event Title - Fifth Highest]**
+[Exact interactions] interactions ([X]x weekly avg)
+**Primary entities:** [Key actors with sentiment percentages]
+**Event trigger:** [Specific incident or content that sparked the spike with citation]
+**Spike context:** [What makes this strategically significant—pattern breaks, amplification tactics]
+**Narrative implication:** [What this reveals about power dynamics or public sentiment]
+**Key Examples:** 
+• "[Post description]" [post_link citation] - [interaction count] interactions
+• "[Post description]" [post_link citation] - [interaction count] interactions
+
+
+**EMERGENT NARRATIVES FROM TRENDS:**
+
+**1. [Strategic Pattern Title]**
+[Pattern description with quantitative evidence]. [Specific example with metrics and citation]. Entities: [Key entities involved]. Newsworthy insight: [Why this matters strategically]. [Platform/distribution analysis]. Story angle: [Concrete investigative lead for journalists].
+
+**2. [Strategic Pattern Title]**  
+[Pattern description with quantitative evidence]. [Specific example with metrics and citation]. Entities: [Key entities involved]. Newsworthy gap: [Accountability or coverage failure revealed]. [Power dynamic analysis]. Investigation: [Specific research path for journalists].
+
+**3. [Strategic Pattern Title]**
+[Pattern description with quantitative evidence]. [Specific example with metrics and citation]. Entities: [Key entities involved]. Newsworthy anomaly: [Pattern break or crisis signal]. [Sentiment and engagement analysis]. Story opportunity: [Ground reporting or interview focus].
+
+
+**EXAMPLES OF EXPECTED OUTPUT:**
+
+**1. Satire Replacing Formal Opposition**
+Satirical content about Ruto (1,127 posts) generated comparable volume to formal opposition critique (1,094 posts) but achieved higher viral peaks. IIIIIII II II's "Kasongo" video [https://x.com/example10] reached 1.4M interactions (16x weekly avg)—surpassing any opposition leader's post. Entities: President Ruto (primary target). Newsworthy shift: Comedians gaining ground as primary opposition voice among youth audiences (YouTube 82% of satirical interactions). Traditional opposition leaders largely absent from viral moments. Story angle: Is Kenya's political opposition losing cultural relevance to satirists? Interview opposition figures about being "out-memed" and how they plan to reach younger voters.
+
+**2. Platform-Specific Crisis Response**
+Twitter dominated real-time crisis documentation with 85% of initial posts [https://x.com/example11] while YouTube hosted analytical breakdowns reaching 2.1x longer watch times. This cross-platform division creates complementary information ecosystems where Twitter provides speed and YouTube provides depth, revealing how audiences consume crisis information differently across platforms.
+
+
+**REAL SPIKE DATA (DO NOT HALLUCINATE - USE THIS DATA):**
+
+**Top Spikes Summary Table:**
+{top_5_spikes_table}
+
+**Detailed Spike Data (use this for full analysis):**
+The following structured spike data contains detailed information about engagement spikes. Use this to create the full analysis with all required fields (event trigger, spike context, narrative implication, key examples with post links).
+
+{spike_analysis_data}
+
+**Supporting Data:**
+Date Range: {date_range}
+Platforms Analyzed: {platform_list}
+Engagement Summary: {engagement_summary}
+Baseline: {baseline_calculation}
+
+**CRITICAL INSTRUCTIONS:**
+- Use ONLY the dates, interactions, and posts from the spike data above
+- Do NOT invent new events or dates
+- Do NOT make up interaction numbers - use exact values from the structured data
+- Do NOT create fake post links - use ONLY the links from key_examples in the spike data
+- For each of the TOP 5 spikes, extract: date_range, total_interactions, weekly_multiple, primary_entities, event_trigger, key_examples (post_link and interaction_count), and narrative_implication
+- Sort spikes by total_interactions (highest first) - they should already be sorted
+- Only include spikes that are 2x or 3x+ above weekly average (check weekly_multiple field)
+- Interpret WHY these specific spikes happened based on the event_trigger and key_examples provided
+- Analyze NARRATIVE implications using the narrative_implication field and expand on it
+- Include at least 2 different post citations per spike from the key_examples field
+"""
+    )

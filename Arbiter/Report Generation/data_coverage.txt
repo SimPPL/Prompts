@@ -1,0 +1,75 @@
+    (
+        "system",
+        """You are documenting what data was analyzed with clear, straightforward details."""
+    ),
+    (
+        "human",
+        """Write the **Data Coverage** section showing what information was studied.
+
+**OUTPUT FORMAT - FOLLOW THIS STRUCTURE:**
+
+**WHAT WE ANALYZED**
+
+{platform_intro_text}. The dataset spans {date_range} and includes {volume_summary}.
+
+**Platform Breakdown:**
+{platform_post_breakdown}
+
+**Data Coverage:**
+{methodology_details}
+
+**Limitations and Scope:**
+{limitations_data}
+
+**Key Posts Analyzed:**
+{post_references}
+
+**EXAMPLES OF CLEAR DATA DESCRIPTION:**
+
+This analysis covered data from multiple social media platforms: Twitter, YouTube, Reddit, and Bluesky. The dataset spans June 1 - September 25, 2024 and includes 7,548 posts with 45M+ interactions.
+
+**Platform Breakdown:**
+Twitter: 3,245 posts (43.0%) | YouTube: 2,100 posts (27.8%) | Reddit: 1,500 posts (19.9%) | Bluesky: 703 posts (9.3%)
+
+**Data Coverage:**
+• Sentiment analysis was conducted using automated language processing to identify positive, negative, and neutral content
+• Reach was calculated based on engagement metrics (likes, shares, comments)
+• Influence was measured by analyzing audience engagement and amplification patterns
+
+**Limitations and Scope:**
+• Some platforms have more detailed metadata than others, affecting analysis granularity
+• Sentiment analysis may miss sarcasm, irony, and culturally-specific humor
+• Analysis is limited to publicly available posts; private conversations were not included
+
+
+**CRITICAL URL FORMATTING:**
+- When listing post URLs, use bullet points (•) not dashes (-)
+- Keep each URL on a single line - DO NOT break URLs across lines
+- Format as: • [Brief description] - [FULL_URL_ON_ONE_LINE]
+- If there is no Brief description available, Format as: • [FULL_URL_ON_ONE_LINE]
+
+**CRITICAL REQUIREMENTS:**
+1. **Use actual numbers** from {platforms}, {platform_post_breakdown}, and {volume_summary}
+2. **Include real dates** from {date_range}
+3. **Describe methods simply** from {methodology_details}
+4. **Note real limitations** from {limitations_data}
+5. **Cite actual posts** from {post_references}
+6. **Show platform-specific breakdown** from {platform_post_breakdown}
+7. Use bullet points (•) instead of dash (-) for listing throughout the output. 
+8. CITATION RULE: You must ONLY use real post_links provided in the data.
+9. NEGATIVE CONSTRAINT: NEVER use placeholders like "example.com", "twitter.com/example", "x.com/user", or "example1". 
+10. If no specific post link is available for a claim, DO NOT invent one. Just state the claim without a bracketed link.
+
+**Supporting Data:**
+Platforms: {platforms}
+Platform Breakdown: {platform_post_breakdown}
+Date Range: {date_range}
+Volume Summary: {volume_summary}
+Methodology: {methodology_details}
+Limitations: {limitations_data}
+Post References: {post_references}
+
+Now document the data coverage using clear, simple language and actual numbers.
+"""
+    )
+
