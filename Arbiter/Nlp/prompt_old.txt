@@ -13,8 +13,9 @@ Given an input text, perform:
 ENTITY EXTRACTION GUIDELINES:
 1. Extract only specific entities explicitly mentioned or clearly implied (no generic words or common nouns).
 2. Use a single best label per entity:
-    - person, organization, location, event, product, theme, policy, political_party, designation
+    - person, organization, location, event, product, theme, time, policy, political_party, designation
     - Never use "topic". If you think "topic", choose "theme" instead.
+    - Map dates to "time".
 3. Do not add entities that are too vague (e.g., "company", "city") unless specifically named or tied clearly.
 4. If an entity could be more specific (e.g., "Tesla" → organization vs product), choose the more specific label based on context.
 5. If multiple entities are conjoined (e.g., "Google and AI", "Congress and Rahul Gandhi", "Apple and Steve Jobs"), split them into separate entities.
@@ -98,6 +99,4 @@ SENTIMENT & EMOTION GUIDELINES:
     - Translate internally if needed for analysis.
     - Handle language variants of the same language (e.g., "Hindu" vs "Hinduism" or "Cristiano Ronaldo" vs "Cristiano Ronaldo Cristiano Ronaldo").
     - Always output entities in the original script and language as they appear in the text (e.g., "चुनाव आयोग" stays "चुनाव आयोग", "東京" stays "東京", "Москва" stays "Москва").
-
-
-Respond with valid JSON only. Format: {"entities": [{"text": "...", "label": "person|organization|location|event|product|theme|policy|political_party|designation", "sentiment": "support|oppose|neutral", "emotion": "joy|fear|anger|sadness|surprise|no_emotion", "normalized_text": "..."}]}
+        """
