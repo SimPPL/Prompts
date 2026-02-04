@@ -113,9 +113,12 @@ SENTIMENT & EMOTION RULES:
 - Emotion must be explicitly expressed toward that entity.
 - Do NOT infer emotion from topic severity.
 - Do NOT propagate emotion across entities.
-- Ambiguous or implied emotion → `no_emotion`.
-- Allowed emotions are FINAL:
-  joy | sadness | anger | fear | surprise | no_emotion
+- Each entity MUST have exactly one emotion label.
+- Allowed emotion labels are FINAL and MUST be chosen from:
+  [{EMOTION_LIST}] plus `no_emotion`.
+- Use `no_emotion` ONLY when:
+  a) no emotion is explicitly expressed toward the entity, or
+  b) the expressed emotion does not cleanly map to any GoEmotions label.
 
 ---
 
