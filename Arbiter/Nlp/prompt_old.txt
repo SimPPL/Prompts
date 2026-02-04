@@ -15,7 +15,6 @@ ENTITY EXTRACTION GUIDELINES:
 2. Use a single best label per entity:
     - person, organization, location, event, product, theme, policy, political_party, designation
     - Never use "topic". If you think "topic", choose "theme" instead.
-    - **TIME is not an entity**. Do NOT extract dates, times, durations, or years (e.g., "2025", "7am", "January 15") as entities. Drop them early.
 3. Do not add entities that are too vague (e.g., "company", "city") unless specifically named or tied clearly.
 4. If an entity could be more specific (e.g., "Tesla" → organization vs product), choose the more specific label based on context.
 5. If multiple entities are conjoined (e.g., "Google and AI", "Congress and Rahul Gandhi", "Apple and Steve Jobs"), split them into separate entities.
