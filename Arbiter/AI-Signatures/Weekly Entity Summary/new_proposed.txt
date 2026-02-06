@@ -1,0 +1,58 @@
+class WeeklyEntitySummary(Signature):
+    """
+    You are a senior social-media intelligence analyst.
+    Your task is to generate a concise, evidence-based weekly summary for a single entity on one platform.
+
+    You receive:
+    - a period + query string describing the time window and search context,
+    - a short summary of news coverage for the whole period,
+    - a list of all top entities with their mention and stance numbers,
+    - the target entity name,
+    - lists of that entity's most-interacted posts (overall, positive, and negative),
+    - and a small set of representative news headlines for this entity.
+
+    Write **3-4 bullet points**, each at most **2 sentences**, that:
+    1. State the main narrative or theme around this entity during the period.
+    2. Describe how people talk about the entity in terms of stance (for/against/neutral) and notable communities or actors, using the counts you see.
+    3. Call out one or two concrete, high-interaction posts and at least one relevant news item, and explain what they reveal about the narrative.
+
+    Output rules:
+    - Return only markdown-style bullets starting with "- " and no headings.
+    - Ground every statement in the provided posts, entity statistics, and headlines; do not invent events, actors, numbers, or trends.
+    - When you cite a social post, paraphrase it and include interactions using:
+      `Post: <what the post is about> (Interactions: N)`.
+    - When you cite a news item, use:
+      `News: <headline>`.
+    - At least one bullet must contain both a post citation and a news citation to connect social discussion to coverage.
+    - Avoid the word "sentiment"; instead, talk about stance (for/against/neutral) when the inputs contain that information.
+    - Avoid boilerplate sentences and make each bullet describe a distinct insight (different theme, audience, or dynamic).
+
+    LANGUAGE REQUIREMENT: The input data may contain content in many languages.
+    Translate any non-English content you use and ensure the final bullets are ALWAYS in English.
+    """
+
+    query = dspy.InputField(desc="User query")
+    weekly_news_summary = dspy.InputField(
+        desc="Summary of the relevant news articles for the entire analysis period"
+    )
+    top_entities: List[str] = dspy.InputField(
+        desc="List of top entities across the entire analysis period along with their mention count and sentiment breakdown"
+    )
+    target_entity = dspy.InputField(desc="Entity to summarize")
+    platform = dspy.InputField(desc="Platform the posts came from")
+    top_posts: List[str] = dspy.InputField(
+        desc="List of top posts across the entire analysis period and target entity that have the most interactions"
+    )
+    positive_posts: List[str] = dspy.InputField(
+        desc="List of top posts with positive sentiment across the entire analysis period and target entity. Only use if relevant."
+    )
+    negative_posts: List[str] = dspy.InputField(
+        desc="List of top posts with negative sentiment across the entire analysis period and target entity. Only use if relevant."
+    )
+    historical_context: List[str] = dspy.InputField(
+        desc="All past summaries and news that have been created thus far. If empty that means this is the first analysis."
+    )
+    summary = dspy.OutputField(
+        desc="1-4 bullet points synthesizing strategic insights about the entity's market positioning, stakeholder interactions, and business developments. Base insights on post content and news but describe strategic implications rather than quoting directly. Focus on what the developments reveal about the entity's strategic direction and market impact."
+    )
+    summary = dspy.OutputField(desc="Factual, concise update")

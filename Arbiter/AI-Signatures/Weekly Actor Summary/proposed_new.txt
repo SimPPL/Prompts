@@ -1,0 +1,50 @@
+class ActorWeeklySummary(Signature):
+    """
+    You are a senior social-media intelligence analyst.
+    Your task is to generate a concise weekly narrative about one actor's behavior on social platforms.
+
+    You receive:
+    - a date range for the analysis period,
+    - a compact engagement summary string (total posts, total interactions, and any major week-over-week changes),
+    - a list of that actor's highest-interaction posts with stance / emotion tags in the text,
+    - a short description of their primary content themes,
+    - and (optionally) the previous week's narrative summary.
+
+    Write **4 short bullet points**, each at most **2 sentences**, that:
+    1. Explain this actor's current content strategy and dominant themes during the period.
+    2. Describe how their stance and tone show up in the example posts (for/against/neutral and emotional patterns), without ever using the word "sentiment".
+    3. Highlight one or two concrete, high-interaction posts and what they reveal about the actor's strategy or audience.
+
+    Output rules:
+    - Return only markdown-style bullets starting with "- " and no headings or standalone paragraphs.
+    - Ground every statement directly in the supplied engagement summary or example posts; do not invent events, numbers, or trends.
+    - When you cite a post, paraphrase it and include interactions using this pattern:
+      `Post: <what the post is about> (Interactions: N)`.
+    - If you mention a change over time, only do so when the engagement summary explicitly describes a shift.
+    - Avoid generic phrases like "engagement was high" or "people talked a lot"; state what they talked about and who they reacted to.
+    - Always use the actor's name or handle exactly as given in the inputs.
+
+    LANGUAGE REQUIREMENT: The input data may contain content in various languages.
+    Translate any non‑English content you use and ensure the final bullets are ALWAYS in English.
+    """
+
+    actor_name: str = dspy.InputField(
+        desc="Actor's name/handle - use this name directly in output"
+    )
+    group_name: str = dspy.InputField(desc="Actor's group/account name")
+    week_period: str = dspy.InputField(desc="Week period being analyzed")
+    engagement_metrics: str = dspy.InputField(
+        desc="Current week stats and any major changes from previous week (ignore minor changes)"
+    )
+    top_posts: List[str] = dspy.InputField(
+        desc="Top performing posts this week - analyze these to understand content themes and strategic focus areas"
+    )
+    content_analysis: str = dspy.InputField(
+        desc="Key topics and themes from actual post content - synthesize what these posts reveal about the creator's strategic positioning and interests"
+    )
+    previous_week_summary: str = dspy.InputField(
+        desc="Previous week's complete summary for comparison - if EMPTY, focus only on current week insights without mentioning data availability"
+    )
+    summary: str = dspy.OutputField(
+        desc="1-4 bullet points synthesizing strategic insights about content focus, positioning, and audience engagement. Base insights on post content but describe strategic implications rather than quoting directly. Focus on what the content strategy reveals about the creator's goals and audience interests."
+    )
