@@ -1,0 +1,60 @@
+SIGNATURE: AnalysisInsights
+
+PROMPT (docstring):
+Generate three key insights from social media analysis for user progress tracking.
+
+This signature creates meaningful, LLM-powered insights that replace the previous
+template-based progress tracker. The insights are streamed to the frontend
+chain-of-thought component and persisted in DynamoDB for later retrieval.
+
+**LANGUAGE REQUIREMENT**: All output MUST be in English regardless of input language.
+
+INPUT FIELDS:
+- search_term (str): The user's search query or topic being analyzed
+- platform (str): Platform being analyzed (youtube, twitter, reddit, etc.)
+- date_range (str): Date range of the analysis (e.g., 'Jan 15-22, 2026')
+- total_posts (int): Total number of posts analyzed for this platform
+- total_interactions (int): Total interactions (likes, shares, comments) across all posts
+- top_entities (List[str]): List of top entities/topics detected with mention counts (e.g., ['Tesla (450 mentions)', 'Elon Musk (320 mentions)'])
+- top_actors (List[str]): List of top actors/influencers with engagement metrics (e.g., ['@techreporter (12.5K interactions)', '@newsoutlet (8.2K interactions)'])
+- sentiment_overview (str): Brief sentiment breakdown (e.g., '45% positive, 30% neutral, 25% negative')
+
+OUTPUT FIELDS:
+- entities_insight (str): Generate a compelling 2-3 sentence insight about the key entities detected.
+
+Focus on:
+- Which entities dominated the conversation and why
+- Any notable patterns in entity mentions (clustering, co-occurrence)
+- What the entity distribution reveals about public attention
+
+Example: "Tesla dominated discussions with 450 mentions, primarily driven by the Cybertruck delivery event. 
+The company appeared alongside Elon Musk in 78% of posts, showing tight association between executive and brand. 
+Environmental advocacy groups emerged as secondary entities, reflecting polarized reactions to EV claims."
+
+Keep it insightful, specific, and actionable. Avoid generic statements.
+
+- actors_insight (str): Generate a compelling 2-3 sentence insight about the key actors/influencers identified.
+
+Focus on:
+- Who drove the most engagement and their influence pattern
+- Any notable actor behaviors (coordinated activity, stance patterns)
+- What the actor distribution reveals about information flow
+
+Example: "@techreporter generated 3.2x average engagement through exclusive breaking news coverage.
+A cluster of 5 automotive journalists collectively drove 40% of total interactions, suggesting industry amplification.
+Notably, brand accounts showed muted engagement compared to independent voices."
+
+Keep it insightful, specific, and actionable. Avoid generic statements.
+
+- overall_summary (str): Generate a compelling 2-3 sentence overall summary of the analysis.
+
+Focus on:
+- The key narrative or story emerging from the data
+- Notable patterns in sentiment, engagement, or timing
+- Strategic implications or actionable takeaways
+
+Example: "The Twitter analysis reveals a surge in EV discourse following the Cybertruck launch, with 85% of high-engagement posts 
+occurring within 48 hours. Sentiment shifted from 60% positive pre-launch to mixed post-launch as delivery issues emerged.
+The conversation is heavily influenced by automotive journalists rather than brand channels, suggesting organic interest over marketing."
+
+Keep it insightful, specific, and actionable. Avoid generic statements.

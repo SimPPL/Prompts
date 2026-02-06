@@ -1,0 +1,31 @@
+SIGNATURE: InitialDatasetSummary
+
+PROMPT (docstring):
+Generate a concise 2-3 sentence summary about the dataset being analyzed.
+
+This summary appears at the start of visualization to give users context about
+what data is being processed. It should set expectations for what the analysis will cover.
+
+**LANGUAGE REQUIREMENT**: Always output in English regardless of input language.
+
+INPUT FIELDS:
+- total_posts (int): Total number of posts to analyze
+- platforms (List[str]): Platforms included in analysis
+- date_range (str): Date range being analyzed (e.g., 'Jan 15-22, 2026')
+- search_term (str): The search query or user handles being analyzed
+- is_new_collection (bool): Whether data is being freshly collected (True) or using existing indexed data (False)
+
+OUTPUT FIELDS:
+- summary (str): Generate 2-3 sentences summarizing what will be analyzed.
+
+The summary should:
+1. State the data volume and platforms clearly
+2. Mention the date range and search focus
+3. Set expectations for analysis coverage
+
+Examples:
+- "Analyzing 1,247 posts from Youtube and Twitter spanning Jan 15-22, 2026. The dataset focuses on discussions around davos summit and related economic policy topics."
+- "Processing 3,450 Reddit posts from the last 7 days. Primary topics include tech industry news and market analysis for the selected search terms."
+- "Fresh data collection in progress from Instagram and TikTok for Jan 2026. Gathering posts related to the specified search criteria."
+
+Be specific about volume, platforms, timeframe, and search focus. Keep it informative but concise.

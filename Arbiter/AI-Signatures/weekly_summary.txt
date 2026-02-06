@@ -1,0 +1,67 @@
+SIGNATURE: WeeklySummary
+
+PROMPT (docstring):
+Extract and analyze the FOUR SPECIFIC HIGHEST-INTERACTION POSTS from the provided dataset.
+Focus on concrete events, specific posts, and exact interaction numbers from the top_posts data.
+Do NOT create generic summaries - each point must reference specific high-engagement posts.
+
+Each point must follow this strict two-line format:
+
+LINE 1 → SPECIFIC EVENT FROM ACTUAL POSTS
+• Extract the main event/topic from actual high-engagement posts in top_posts
+• Be specific about what happened in the post content
+• Focus on concrete actions, announcements, or controversies
+
+LINE 2 → DETAILED ANALYSIS WITH SPECIFICS
+• Must use the exact interaction number from the post: XXX,XXX interactions**
+• Must name the exact author/actor from the post
+• Must describe the specific post content and why it drove engagement
+• Must include the real trigger or context from the post
+• Must reference concrete numbers, names, and events from the data
+
+CRITICAL DATA RULES:
+• Extract ALL information ONLY from the provided top_posts data
+• Do NOT invent events, actors, or interaction numbers
+• Each point must correspond to one actual high-engagement post
+• Use the exact wording and specifics from the post content
+• Focus on posts with the highest interaction numbers
+
+**LANGUAGE REQUIREMENT**: The input data may contain content in various languages (Hindi, Spanish, French, Arabic, etc.). You MUST translate all non-English content to English in your analysis. Your final output MUST ALWAYS be in English regardless of the input language. Do NOT return summaries in the original language of the posts - always translate to English first.
+
+INPUT FIELDS:
+- query (str): User query
+- weekly_news_summary (str): Summary of relevant news articles for the entire analysis period
+- top_entities (List[str]): List of top entities across the entire analysis period with mention counts and sentiment breakdown
+- platform (str): Platform
+- top_posts (List[str]): List of ACTUAL posts with highest interactions across the entire analysis period - EXTRACT SPECIFIC EVENTS FROM THESE
+- historical_context (List[str]): All past summaries and news that have been created thus far. If empty that means this is the first analysis.
+
+OUTPUT FIELDS:
+- summary (str): EXTRACT SPECIFIC EVENTS FROM THE TOP_POSTS DATA. Output EXACTLY FIVE bullet points.
+
+CRITICAL: Each point must be a complete narrative sentence with date, author, and summarized topic. VARY the sentence structure - do NOT use the same opening for all bullets.
+
+EXACT format with SPECIFIC DETAILS:
+- [Author Name] posted on [Date] about [Topic], attracting [Target Audience] discussing [Key Entities], and generating [X.XXx] above the weekly average.
+- [Author/Account] shared content on [Date] covering [Topic], gaining traction among [Community Type] through [Engagement Mechanism], reaching [X.XXx] the period's average interactions.
+- The [Date] post on [Topic] captured attention for [Why it resonated], with audiences engaging through [How they engaged].
+- On [Date], content focused on [Topic] circulated among [Audience Group], driven by [Engagement Reason] and performing at [X.XXx] above average interactions due to [Driver].
+- A [Date] upload discussing [Topic] drew interest from [Audience Type], prompting discussions around [Key Entities or Themes] and achieving [X.XXx] higher-than-normal engagement through [Interaction Pattern].
+
+REQUIREMENTS:
+• Output EXACTLY FIVE bullet points
+• Each bullet point MUST be ONE complete narrative sentence
+• Include: DATE (formatted as "Aug 3"), AUTHOR/ACTOR, PLATFORM, SPECIFIC TOPIC, KEY ENTITIES/TOPICS
+• VARY sentence structure - different openings (avoid repetitive starts)
+• READ post title/content but SUMMARIZE content - do NOT copy raw titles, emojis, or clickbait phrasing
+• Include KEY ENTITIES and TOPICS discussed
+• Name TOP ACTORS/COMMUNITIES that engaged
+• CRITICAL: ONLY include interaction metric if 3x or higher, ALWAYS with comparison context
+  - Format: "X.XXx interactions above the weekly average" OR "X.XXx the period average interactions" OR similar
+  - NEVER write just "3x" or "3.12x" by itself - always include the comparison (e.g., "above average", "above period baseline", "the typical interactions")
+  - NEVER use the word "engagement" - always use "interactions" instead
+• For less than 3x average interactions, do NOT include the metric at all
+• Explain why the post drove interactions: which entities/topics resonated, which communities engaged, what mechanism drove sharing
+• Use ACTUAL data from the top_posts provided
+
+- key_events (str): Extract ONLY the date from each of the five bullet points. Format: Aug 9 | Aug 12 | Aug 18 | Aug 22 | Aug 25

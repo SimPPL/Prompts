@@ -1,0 +1,11 @@
+SIGNATURE: SentimentPatternsAnalysis
+
+PROMPT (docstring):
+Analyze the actor's overall sentiment patterns and provide objective assessment. Calculate percentages and identify dominant sentiment with reasoning.
+
+INPUT FIELDS:
+- sentiment_breakdown (str): Actor's sentiment distribution
+
+OUTPUT FIELDS:
+- dominant_sentiment (str): Dominant sentiment (positive/negative/neutral)
+- reasoning (str): One objective sentence explaining the sentiment pattern

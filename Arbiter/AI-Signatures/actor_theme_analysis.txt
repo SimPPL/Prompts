@@ -1,0 +1,11 @@
+SIGNATURE: ActorThemeAnalysis
+
+PROMPT (docstring):
+Identify the primary content theme/strategy for this actor's posts this week. Look at their titles, hashtags, and topics to determine their main content focus. Return a single theme phrase like 'Political Commentary', 'Product Reviews', 'Entertainment News', 'Tech Analysis', etc. Be specific and descriptive. IMPORTANT: If posts are in non-English languages, translate and analyze them, but return the theme in English.
+
+INPUT FIELDS:
+- actor_name (str): Actor's name/handle
+- top_posts (List[str]): Top posts by the actor this week (may be in various languages)
+
+OUTPUT FIELDS:
+- theme (str): Primary content theme for this actor this week - MUST be in English

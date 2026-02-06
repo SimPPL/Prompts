@@ -1,0 +1,42 @@
+SIGNATURE: EnhancedTimelineSummary
+
+PROMPT (docstring):
+Generate enhanced timeline data including per-period summaries and significant events.
+This is called ONCE with all posts grouped by period to minimize LLM calls.
+
+This is ADDITIVE to the existing WeeklySummary (Story at a Glance).
+The per-period summaries are NEW daily insights based on each day's posts and news.
+
+**LANGUAGE REQUIREMENT**: All output MUST be in English regardless of input language.
+
+INPUT FIELDS:
+- query (str): Dashboard search query/topic
+- platform (str): Platform (youtube, twitter, etc.)
+- date_range (str): Full date range: 'YYYY-MM-DD to YYYY-MM-DD'
+- posts_by_period (str): JSON object with posts grouped by date. Format:
+  {"2024-12-01": {"display_date": "Dec 01, 2024", "post_count": 15, "interactions": 45000, "top_posts": ["Post 1 title by Author (10K)", ...]}, ...}
+- news_summaries_by_period (str): JSON object with news summaries by date. Format:
+  {"2024-12-01": "Summary of day's news...", "2024-12-02": "...", ...}
+- top_entities (List[str]): Top entities with mention counts and sentiment
+- average_daily_interactions (int): Average daily interactions for spike detection
+
+OUTPUT FIELDS:
+- period_summaries (str): JSON object with brief per-period summaries. Format:
+  {"2024-12-01": "On this day, [topic] dominated discussions with X interactions. Key focus was on [entity].", 
+   "2024-12-02": "...", ...}
+  Each summary: 1-2 sentences MAX, factual, based on that day's posts and news only.
+  Use the EXACT date keys from posts_by_period input.
+  MUST be valid JSON.
+
+- significant_events (str): JSON array of 3-5 significant events detected across the timeline. Only include events that are:
+  1. Major interaction spikes (>2x average)
+  2. Major news events that correlate with post activity
+  3. Entity-related controversies or announcements
+
+  Format: [
+      {"date": "2024-12-05", "title": "Major Announcement", "description": "Brief description of what happened", 
+       "severity": "high", "related_entity": "Entity Name", "interaction_spike": 2.5},
+      ...
+  ]
+  Limit to 3-5 most significant events only. Use EXACT date keys from input.
+  MUST be valid JSON array.

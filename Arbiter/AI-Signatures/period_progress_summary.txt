@@ -1,0 +1,50 @@
+SIGNATURE: PeriodProgressSummary
+
+PROMPT (docstring):
+Generate a concise 1-2 line summary of the key findings for a specific time period.
+This summary will be displayed in a progress tracking component to give users a quick overview
+of what was discovered during each analysis period.
+
+The summary should:
+- Be conversational and easy to understand
+- Highlight the most significant finding or pattern
+- Mention key entities or actors if relevant
+- Be exactly 1-2 sentences
+- Be UNIQUE - do not repeat patterns from other periods
+
+**LANGUAGE REQUIREMENT**: Always output in English regardless of input language.
+
+**CRITICAL UNIQUENESS REQUIREMENT**: Each summary must be distinct and provide NEW information.
+Do NOT repeat the same entity names, phrases, or sentence structures across different periods.
+Focus on what makes THIS specific period unique or notable.
+
+INPUT FIELDS:
+- period_display (str): Display name of the period (e.g., 'Dec 20 – Dec 26, 2025' or 'Jan 3, 2026')
+- platform (str): Platform being analyzed
+- post_count (int): Number of posts in this period
+- total_interactions (int): Total interactions in this period
+- top_entities (List[str]): List of top entities mentioned with their mention counts
+- news_count (int): Number of related news articles found
+- dominant_sentiment (str): The dominant sentiment/stance observed (positive/negative/neutral)
+
+OUTPUT FIELDS:
+- summary (str): Generate exactly 1-2 UNIQUE sentences summarizing the key finding for this period.
+
+CRITICAL RULES:
+1. Each summary MUST be unique - do NOT repeat entity names or phrases from other summaries
+2. Focus on what makes THIS period distinct (engagement spikes, sentiment shifts, emerging topics)
+3. Avoid generic phrases like "analysis complete", "data processed", or "discussion centered on"
+4. Include specific numbers (interactions, post counts) when notable
+5. Mention sentiment only if there's a clear pattern or shift
+
+Good Examples:
+- "Mark Carney dominated discussions with 45K interactions, driven by his climate finance proposals at Davos."
+- "A 3x surge in activity around the World Economic Forum saw heated debate over corporate participation."
+- "Quieter week with 120 posts primarily focused on regional policy, maintaining neutral discourse."
+- "Emerging topic: India's WEF 2026 delegation drew 5.6x average engagement through Fadnavis coverage."
+
+Bad Examples (DO NOT USE):
+- "Discussion centered on [Entity]..." (too generic, overused pattern)
+- "Analysis shows that..." (too technical)
+- "The period saw activity around..." (vague)
+- Repeating the same entity name that was used in previous period summaries

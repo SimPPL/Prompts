@@ -1,0 +1,14 @@
+SIGNATURE: ClickbaitAnalysis
+
+PROMPT (docstring):
+Analyze the actor's posts for clickbait patterns and manipulation tactics. 
+Look for phrases like 'You won't believe', 'This one trick', 'You need to know', 'Shocking truth', urgency tactics, curiosity gaps, and emotional manipulation. 
+Return a score from 0-5 where 0=no clickbait, 5=heavy clickbait usage, and provide one objective sentence explaining the reasoning. IMPORTANT: If posts are in non-English languages, analyze them for clickbait patterns in that language but provide reasoning in English.
+
+INPUT FIELDS:
+- actor_name (str): Actor's name/handle
+- top_posts (List[str]): Top posts by the actor (may be in various languages)
+
+OUTPUT FIELDS:
+- clickbait_score (float): Clickbait score from 0-5
+- reasoning (str): One objective sentence explaining the score - MUST be in English

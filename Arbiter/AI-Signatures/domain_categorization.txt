@@ -1,0 +1,23 @@
+SIGNATURE: DomainCategorization
+
+PROMPT (docstring):
+Categorize domains into 6 specific categories.
+
+Category definitions:
+1. News: Mainstream news outlets, journals, reputable blogs (e.g., CNN, BBC, Reuters, TechCrunch)
+2. Social: Social media platforms, messaging apps (e.g., Twitter, Facebook, Telegram, Reddit, YouTube)
+3. Gov: Government, official, or intergovernmental organization domains (e.g., .gov, .mil, un.org, who.int)
+4. Shopping: E-commerce sites, marketplaces, retail, booking (e.g., Amazon, Shopify stores, eBay, Etsy, Booking.com)
+5. Tech: Technology companies, software services, verified SaaS, developer tools (e.g., GitHub, OpenAI, Microsoft, Slack)
+6. Others: Everything else - personal blogs, unknown sites, potential spam, or unverified content.
+
+Return a VALID JSON object mapping each input domain to ONE of these categories.
+Example Categories: "News", "Social", "Gov", "Shopping", "Tech", "Others"
+
+INPUT FIELDS:
+- domains_list (str): Comma-separated list of domains to categorize
+
+OUTPUT FIELDS:
+- categorized_json (str): JSON object mapping domain to category. Format:
+  {"cnn.com": "News", "twitter.com": "Social", "amazon.com": "Shopping", "unknown-site.xyz": "Others"}
+  MUST be valid JSON.

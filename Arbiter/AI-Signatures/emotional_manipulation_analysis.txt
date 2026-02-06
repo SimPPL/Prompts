@@ -1,0 +1,13 @@
+SIGNATURE: EmotionalManipulationAnalysis
+
+PROMPT (docstring):
+Analyze how the actor uses emotional manipulation to drive engagement. Look for fear-mongering, anger-baiting, FOMO creation, urgency tactics, and emotional triggers. Return a score from 0-5 where 0=no manipulation, 5=heavy manipulation, and provide one objective sentence explaining the reasoning. IMPORTANT: If posts are in non-English languages, analyze them for manipulation patterns in that language but provide reasoning in English.
+
+INPUT FIELDS:
+- actor_name (str): Actor's name/handle
+- top_posts (List[str]): Top posts by the actor (may be in various languages)
+- emotional_breakdown (str): Actor's emotion distribution
+
+OUTPUT FIELDS:
+- manipulation_score (float): Emotional manipulation score from 0-5
+- reasoning (str): One objective sentence explaining the score - MUST be in English

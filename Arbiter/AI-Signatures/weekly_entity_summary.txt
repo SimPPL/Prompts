@@ -1,0 +1,43 @@
+SIGNATURE: WeeklyEntitySummary
+
+PROMPT (docstring):
+Produce a comprehensive, evidence-grounded analytical summary explaining how this entity's narrative has developed across the entire dataset and how it has shifted in the most recent period. Reconstruct the entity's lifecycle — its identity, baseline stance patterns (for/against/neutral), emotional trajectory, major communities, key actors shaping its narrative, framing patterns, spikes, turning points, thematic shifts, and long-term changes in interactions or tone.
+
+Substantiate every claim using concrete numbers and post-level evidence exactly as provided. Clearly show which themes have persisted over time, which themes have changed, and why those changes occurred. Demonstrate how the newest posts modify or challenge the established trajectory by identifying narrative progression, evolving stakeholder roles, quantified momentum shifts, and new discussion topics.
+
+When referencing high-interactions posts, explicitly state what the post is about (content description), why it drove interaction, and how its stance or framing contributed.
+
+**Output MUST:**
+
+* Be in clear bullet points only (not continuous sentences)
+* Contain a maximum of 5 bullets
+* Include at least one bullet naming prominent actors in the latest period and specifying which posts or topics generated the highest engagement and why
+* Avoid the word "sentiment" entirely; do not mention positive sentiment, negative sentiment, or any sentiment-related term; use only stance categories (for/against/neutral)
+* Avoid empty adjectives and provide only evidence-based insights
+* Quantify every bullet (e.g., "2.9× increase from normal")
+* Ensure every bullet contains a unique, non-repetitive insight
+* Do not include labels or headings such as [Narrative Shift], [Momentum] ]] [[ ## completed ## ]] , etc. in the output
+
+**Use an insight structure similar to, but without including the labels:**
+
+* A pattern-based insight where a theme (with post counts and for/against/neutral stance distribution) achieves a measurable performance outcome because of a specific mechanism. Include an example post, what it discusses, the interaction count, how many times above average it performed, and what strategic shift this reveals.
+* An event-driven insight where an incident generates a specific number of interactions because of a defined trigger, with details that reveal an underlying weakness and explain the resulting impact.
+* An actor-driven insight naming key actors, showing how their posts shaped the narrative, including an example post, its interaction count, and why it performed strongly.
+
+**LANGUAGE REQUIREMENT**: The input data may contain content in various languages (Hindi, Spanish, French, Arabic, etc.). You MUST translate all non-English content to English in your analysis. Your final output MUST ALWAYS be in English regardless of the input language. Do NOT return summaries in the original language of the posts - always translate to English first.
+
+INPUT FIELDS:
+- query (str): User query
+- weekly_news_summary (str): Summary of the relevant news articles for the entire analysis period
+- top_entities (List[str]): List of top entities across the entire analysis period along with their mention count and sentiment breakdown
+- target_entity (str): Entity to summarize
+- platform (str): Platform the posts came from
+- top_posts (List[str]): List of top posts across the entire analysis period and target entity that have the most interactions
+- positive_posts (List[str]): List of top posts with positive sentiment across the entire analysis period and target entity. Only use if relevant.
+- negative_posts (List[str]): List of top posts with negative sentiment across the entire analysis period and target entity. Only use if relevant.
+- historical_context (List[str]): All past summaries and news that have been created thus far. If empty that means this is the first analysis.
+
+OUTPUT FIELDS:
+- summary (str): 1-4 bullet points synthesizing strategic insights about the entity's market positioning, stakeholder interactions, and business developments. 
+Base insights on post content and news but describe strategic implications rather than quoting directly. 
+Focus on what the developments reveal about the entity's strategic direction and market impact. (Note: Second output field in code is "Factual, concise update" - last defined wins in DSPy.)

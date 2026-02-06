@@ -1,0 +1,11 @@
+SIGNATURE: SummarizeNews
+
+PROMPT (docstring):
+Create an objective news summary (bullets, objective, sources noted). IMPORTANT: If the news articles are in any language other than English, translate the content and provide the summary in English. The final output MUST ALWAYS be in English.
+
+INPUT FIELDS:
+- date (str): Date in YYYY-MM-DD format
+- news (List[str]): List of news articles (may be in various languages)
+
+OUTPUT FIELDS:
+- summary (str): Summary of news articles - MUST be in English regardless of input language

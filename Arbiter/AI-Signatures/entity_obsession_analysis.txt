@@ -1,0 +1,12 @@
+SIGNATURE: EntityObsessionAnalysis
+
+PROMPT (docstring):
+Identify the top 5 entities/topics this actor is most obsessed with based on their posts. Return specific names, people, organizations, or topics they mention most frequently. IMPORTANT: If posts are in non-English languages, translate entity names to English where applicable.
+
+INPUT FIELDS:
+- actor_name (str): Actor's name/handle
+- top_posts (List[str]): Top posts by the actor (may be in various languages)
+- entity_data (str): Entity mentions and frequency data
+
+OUTPUT FIELDS:
+- obsessed_entities (str): Comma-separated list of top 5 entities they focus on - MUST be in English

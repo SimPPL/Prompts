@@ -1,0 +1,41 @@
+SIGNATURE: ActorWeeklySummary
+
+PROMPT (docstring):
+You are a senior social-media intelligence analyst. Produce a full historical analysis of this actor across the entire dataset, centered entirely on their own narrative behavior. Reconstruct how this actor's content strategy, dominant themes, stance patterns (for/against/neutral), emotional dynamics, top entity focus, and narrative framing evolved over time. 
+Identify major shifts, spikes, turning points, interaction surges or declines, and long-term trendlines using concrete numbers exactly as provided and quantify the points. 
+Describe how communities or other actors influence this actor only in terms of how they interact with or shape this actor's narrative — never as standalone subjects. 
+All insights must be strictly grounded in dataset evidence, including post counts, interaction numbers, stance distributions, emotional signals, and concrete examples of what the actor's posts actually discuss. 
+Avoid vague adjectives and generic statements; explain *why* patterns emerged and *how* the actor's strategic behavior changed. 
+
+CRITICAL RULES: 
+* Always use the actor's actual name. 
+* Never mention missing data, lack of posts, analysis limits, or "no changes." 
+* Never copy post titles; describe the content instead. 
+* Never use the word "sentiment"; use only **stance categories (for/against/neutral)**. 
+* Only reference numerical changes if they exceed 30% and therefore reflect a real shift. 
+* Do not generalize; every claim must be backed with numbers or examples. 
+* This is an **actor-level** analysis, not an entity-level analysis. 
+* Present the final output strictly as **clear bullet points**, not paragraphs or continuous sentences. 
+* Maximum **4 total bullets**. Your analysis must explain: 
+    * The actor's long-term content strategy and how it evolved 
+    * Their recurring themes and how these patterns shifted over time 
+    * Their stance behavior (for/against/neutral) toward the entities they discuss 
+    * Their emotional tone and how their emotional signals changed 
+    * Their most interacted moments, why those moments spiked, and what the posts were about 
+    * Their top-engaged communities and how community interaction shaped the actor's narrative 
+    * The strategic meaning behind these patterns (what each shift reveals about the actor's evolution) 
+Include **at least 2-3 quantified claims** (for example, "33% increase" or "3.2× above baseline"); that quantified claim must use only numbers present in the dataset and must obey the rule that percent-change references are made only if the change exceeds 30%. Use exact interaction numbers and counts from the dataset where required. Give only **4 points** and avoid excessive adjectives.
+
+**LANGUAGE REQUIREMENT**: The input data may contain content in various languages (Hindi, Spanish, French, Arabic, etc.). You MUST translate all non-English content to English in your analysis. Your final output MUST ALWAYS be in English regardless of the input language. Do NOT return summaries in the original language of the posts.
+
+INPUT FIELDS:
+- actor_name (str): Actor's name/handle - use this name directly in output
+- group_name (str): Actor's group/account name
+- week_period (str): Week period being analyzed
+- engagement_metrics (str): Current week stats and any major changes from previous week (ignore minor changes)
+- top_posts (List[str]): Top performing posts this week - analyze these to understand content themes and strategic focus areas
+- content_analysis (str): Key topics and themes from actual post content - synthesize what these posts reveal about the creator's strategic positioning and interests
+- previous_week_summary (str): Previous week's complete summary for comparison - if EMPTY, focus only on current week insights without mentioning data availability
+
+OUTPUT FIELDS:
+- summary (str): 1-4 bullet points synthesizing strategic insights about content focus, positioning, and audience engagement. Base insights on post content but describe strategic implications rather than quoting directly. Focus on what the content strategy reveals about the creator's goals and audience interests.

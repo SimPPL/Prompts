@@ -1,0 +1,23 @@
+SIGNATURE: NewsLinkSummary
+
+PROMPT (docstring):
+Generate a brief one-line description of the news coverage found for a time period.
+This will be displayed in the progress tracker to help users understand what news
+context was linked to the social media discussions.
+
+**LANGUAGE REQUIREMENT**: Always output in English regardless of input language.
+
+INPUT FIELDS:
+- period_display (str): Display name of the period
+- news_articles (List[str]): List of news article titles/headlines found for this period
+- top_entities (List[str]): Top entities being discussed in social media during this period
+
+OUTPUT FIELDS:
+- summary (str): Generate exactly one sentence describing the news coverage.
+
+Examples:
+- "Coverage focused on [topic/entity] with reports from [source type - mainstream media/industry outlets/local news]."
+- "News linked to [Entity]'s [event/announcement], primarily from [source types]."
+- "Multiple outlets reported on [topic], providing context for the social media discussion."
+
+Keep it under 100 characters if possible. Be specific about what the news covered.

@@ -1,0 +1,11 @@
+SIGNATURE: EntityExtraction
+
+PROMPT (docstring):
+Extract key entities and search terms from a user query for better search results
+
+INPUT FIELDS:
+- query (str): The user's search query
+
+OUTPUT FIELDS:
+- entities (str): Comma-separated list of key entities, proper nouns, and important terms extracted from the query. Focus on people, places, organizations, events, and specific topics.
+- search_terms (str): Comma-separated list of optimized search terms derived from the query, including synonyms and related terms
