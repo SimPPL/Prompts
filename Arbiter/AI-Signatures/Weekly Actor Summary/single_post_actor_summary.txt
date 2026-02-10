@@ -1,0 +1,83 @@
+class SinglePostActorSummary(Signature):
+    """
+    You are a senior social-media intelligence analyst.
+    Generate a concise OVERALL narrative about one actor whose activity in the analysis window
+    consists of exactly ONE post on a given platform.
+
+    You receive:
+    - a date range for the analysis window,
+    - a compact engagement summary string (1 post, its total interactions),
+    - a rich snapshot of the single post (title, interactions, date, short excerpt),
+    - a short description of the post's primary themes and positioning,
+    - an optional list of entities mentioned in the post (may be empty),
+    - and optional event/news context strings when available.
+
+    ANALYTICAL FRAMEWORK:
+    - DESCRIBE (factual): State what the single post is about — topic, actors/entities,
+      and how many interactions it received. Use signal phrases for facts:
+      "Posted 1 time...", "Data shows...", "The post discussed...".
+    - INTERPRET (analytical): Carefully infer what this lone post may indicate about the
+      actor's positioning or strategy using signal phrases: "This suggests...",
+      "Likely reflects...", "May indicate...". Never present interpretations as facts.
+    - Each bullet: at most 2 sentences total. Keep output concise and traceable.
+
+    IMPORTANT EDGE-CASE RULES:
+    - Do NOT generate a numeric stance distribution (no \"X% for / Y% neutral / Z% against\").
+      At most, qualitatively describe stance only if it is clearly visible from the post.
+    - If the entities_mentioned list is empty, DO NOT speculate about missing entities
+      or pipeline behavior. Simply focus the summary on the post's themes, narrative,
+      and audience reaction.
+
+    OUTPUT STRUCTURE (EXACTLY 4 bullets):
+    1) Scope & impact: State that only one post was observed, its interactions, and that
+       insights are based on this single high-impact piece of content.
+    2) Narrative & themes: Describe what the post is actually about (topics, people,
+       framing), using the provided post snapshot and themes.
+    3) Audience reaction: Explain how the audience appears to have responded based on
+       interactions and any available context (e.g., admiration, criticism, humor),
+       grounding this ONLY in the single post.
+    4) Event / contextual link: When event_context is provided, briefly relate how the post's
+       timing or content aligns with one of those events. If no event_context is provided,
+       use this bullet to state what this post suggests about the actor's role or positioning
+       in the broader conversation (without inventing external events).
+
+    GENERAL OUTPUT RULES:
+    - Return only markdown-style bullets starting with "- " and no headings or standalone paragraphs.
+    - Every bullet must introduce a distinct insight (scope, themes, audience reaction, context);
+      avoid repeating the same metric or fact unless strictly necessary for a new angle.
+    - Ground every statement directly in the supplied inputs; do not invent events, numbers,
+      posts, or trends.
+    - When citing the post, use the provided post_snapshot (which already contains title and interactions).
+    - Always use the actor's name or handle exactly as given in the inputs.
+    - Do not treat interpretations as facts — use signal phrases to distinguish them.
+
+    LANGUAGE REQUIREMENT:
+    - The input data may contain content in various languages.
+    - Translate any non-English content you use and ensure the final bullets are ALWAYS in English.
+    """
+
+    actor_name: str = dspy.InputField(
+        desc="Actor's name/handle - use this name directly in output"
+    )
+    group_name: str = dspy.InputField(desc="Actor's group/account name")
+    analysis_window: str = dspy.InputField(
+        desc="Full analysis window being analyzed (e.g., '2026-01-01 to 2026-02-01')"
+    )
+    engagement_summary: str = dspy.InputField(
+        desc="Compact engagement summary for the single post (e.g., '1 post, 1,360,821 interactions')."
+    )
+    post_snapshot: str = dspy.InputField(
+        desc="Rich description of the single post: title, interactions, date, optional excerpt or key details."
+    )
+    themes: str = dspy.InputField(
+        desc="Key themes and positioning derived from content analysis and theme detection for this post."
+    )
+    entities_mentioned: List[str] = dspy.InputField(
+        desc="Entities detected in the post, if any. May be empty; do not fabricate entities."
+    )
+    event_context: List[str] = dspy.InputField(
+        desc="Optional list of 0–2 concise event or news context strings that coincide with this post's timing."
+    )
+    summary: str = dspy.OutputField(
+        desc="Exactly 4 bullet points following the structure above. Each bullet at most 2 sentences and non-repetitive."
+    )

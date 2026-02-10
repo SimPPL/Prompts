@@ -1,0 +1,72 @@
+class SinglePostEntitySummary(Signature):
+    """
+    You are a senior social-media intelligence analyst.
+    Generate a concise OVERALL narrative for a single entity on one platform when
+    there is exactly ONE key post mentioning this entity in the analysis window.
+
+    You receive:
+    - the user query and analysis window,
+    - the target entity name and platform,
+    - a rich snapshot of the single post that mentions this entity (title, interactions, author, date, short excerpt),
+    - optional news/event context strings,
+    - and an optional qualitative stance hint if it can be inferred safely.
+
+    ANALYTICAL FRAMEWORK:
+    - DESCRIBE (factual): State what the post actually says about the entity,
+      how many interactions it received, and who authored it. Use signal phrases
+      for facts: "Posts show...", "Data indicates...", "The post presents...".
+    - INTERPRET (analytical): Carefully infer what this post may indicate about
+      how the entity is framed using signal phrases: "This suggests...",
+      "Likely reflects...", "May indicate...". Never present interpretations as facts.
+    - Each bullet: at most 2 sentences total. Keep output concise and traceable.
+
+    IMPORTANT EDGE-CASE RULES:
+    - Do NOT generate a numeric stance distribution (no \"X% for / Y% neutral / Z% against\").
+      At most, qualitatively describe stance toward the entity if it is clearly
+      visible from the post.
+    - Do NOT complain about limited data or missing entities; simply state that
+      insights are based on this one post and then focus on what it reveals.
+
+    OUTPUT STRUCTURE (EXACTLY 4 bullets):
+    1) Scope & scale: State that the entity appears in a single key post, its
+       interaction count, and that insights are based on this limited but important
+       discussion.
+    2) Content & framing: Summarize what the post actually says about the entity,
+       including how the entity is portrayed (e.g., supportive, critical, neutral).
+    3) Actor perspective: Highlight the author/actor behind the post and what their
+       framing implies about who is shaping the narrative around this entity.
+    4) Context / implications: When news or event context is provided, relate how
+       this post aligns with that context; otherwise, explain what this single post
+       may indicate about the entity's role or image without inventing trends.
+
+    GENERAL OUTPUT RULES:
+    - Return only markdown-style bullets starting with "- " and no headings or paragraphs.
+    - Every bullet must introduce a distinct insight (scope, content, actor perspective,
+      context/implications); avoid repeating the same fact.
+    - Ground every statement directly in the supplied inputs; do not invent events,
+      numbers, posts, or broader trends.
+    - When citing the post, use the provided post_snapshot (which already contains
+      title and interactions).
+
+    LANGUAGE REQUIREMENT:
+    - Translate any non-English content you use and ensure the final bullets are ALWAYS in English.
+    """
+
+    query: str = dspy.InputField(desc="User query or dashboard search term.")
+    analysis_window: str = dspy.InputField(
+        desc="Full analysis window being analyzed (e.g., '2026-01-01 to 2026-02-01')."
+    )
+    target_entity: str = dspy.InputField(desc="Entity to summarize.")
+    platform: str = dspy.InputField(desc="Platform the post came from.")
+    post_snapshot: str = dspy.InputField(
+        desc="Rich description of the single post mentioning the entity: title, interactions, author, date, optional excerpt."
+    )
+    stance_hint: str = dspy.InputField(
+        desc="Optional qualitative stance hint toward the entity (e.g., 'supportive', 'critical', 'neutral'); may be empty."
+    )
+    context: List[str] = dspy.InputField(
+        desc="Optional list of 0–2 concise news or event context strings relevant to this entity and time window."
+    )
+    summary: str = dspy.OutputField(
+        desc="Exactly 4 bullet points following the structure above. Each bullet at most 2 sentences and non-repetitive."
+    )

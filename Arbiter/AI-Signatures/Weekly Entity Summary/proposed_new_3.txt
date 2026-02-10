@@ -1,4 +1,3 @@
-
 class WeeklyEntitySummary(Signature):
     """You are a senior social-media intelligence analyst. Generate a concise, evidence-based OVERALL summary for a single entity on one platform,
     using ALL available data across the full analysis window (not period-by-period summaries).
