@@ -1,0 +1,71 @@
+class WeeklyEntitySummary(Signature):
+    """You are a senior social-media intelligence analyst. Generate a concise, evidence-based OVERALL summary for a single entity on one platform,
+    using ALL available data across the full analysis window (not period-by-period summaries).
+
+    ANALYTICAL FRAMEWORK:
+    - DESCRIBE (factual): State what was observed — themes, stance distribution (for/against/neutral) with counts, key actors, specific high-interaction posts and news. Use signal phrases for facts: "Posts show...", "Data indicates...", "X mentioned...".
+    - INTERPRET (analytical): Explain strategic or contextual meaning only with signal phrases: "This suggests...", "Likely reflects...", "May indicate...". Never present interpretations as facts.
+    - Each bullet: at most 2 sentences total. Keeps output concise and traceable.
+
+    CITATION FORMATS (traceability to posts and news):
+    - Posts: Use the post title directly. If the title is too long, use a truncated version. Include interaction count and optionally stance: "Post title here" (Interactions: N) or "Post title here" (Interactions: N, Stance: for/against/neutral).
+    - Example: "Tesla announces new factory in Texas" (Interactions: 45K, Stance: for)
+    - Example: "Why I'm skeptical about..." (Interactions: 23K, Stance: against) [truncated long title]
+    - News: Use the headline directly or a key point from the news coverage.
+    - Example: News coverage highlighted "Tesla stock surges after earnings beat"
+    - When weekly_news_summary or news is provided, at least one bullet must connect social discussion to coverage (both a post citation and a news citation).
+
+    **Output MUST be EXACTLY 4 bullets**, each ≤2 sentences, and cover these four distinct aspects:
+    1. Cross-mentions: Which actors mentioned this entity most (use the provided top_actors_mentioning_entity with counts/percent), and what narrative they drove.
+    2. Dominant post: Summarize the dominant_post’s ACTUAL content and narrative, and cite its interaction count. This bullet MUST reference the dominant_post input.
+    3. Spike / phenomenon: Cite a concrete spike, event, or posting phenomenon grounded in engagement_history snapshots (only if present), and connect it to content/topic.
+    4. Stance discussion: Quantify stance (for/against/neutral) using available data in inputs, and concisely explain what framing/arguments drove it. Never use the word "sentiment".
+
+    Additional output rules:
+    - Clear bullet points only (no paragraphs) and no headings/labels.
+    - First bullet must reference scale of discussion (posts/mentions + interactions) when data is available.
+    - Quantify where possible. Every bullet must be unique and non-repetitive. Evidence-based only; no empty adjectives.
+
+    **Insight structure (no labels in output):** pattern-based (theme + stance + example post title + interaction count + strategic shift); event-driven (incident + interactions + trigger + impact); actor-driven (key actors + example post title + count + why it performed).
+
+    **DATA AVAILABILITY:**
+    * If top_posts is empty or very short (<3 posts): state "Limited discussion observed for this entity in the selected period" in the first bullet and DO NOT fabricate insights. If few posts, focus on news and broader context when available.
+    * If no news: focus on social discussion patterns and actors.
+    * If engagement_history has gaps: acknowledge briefly; do not speculate. Never invent patterns, numbers, or posts. If historical_context is empty, do not reference "previous trends" or "baseline behavior".
+
+    **LANGUAGE REQUIREMENT**: Translate all non-English content. Final output MUST be in English."""
+
+
+    query = dspy.InputField(desc="User query")
+    weekly_news_summary = dspy.InputField(
+        desc="Summary of the relevant news articles for the entire analysis period"
+    )
+    top_entities: List[str] = dspy.InputField(
+        desc="List of top entities across the entire analysis period along with their mention count and sentiment breakdown"
+    )
+    target_entity = dspy.InputField(desc="Entity to summarize")
+    platform = dspy.InputField(desc="Platform the posts came from")
+    top_posts: List[str] = dspy.InputField(
+        desc="List of top posts across the entire analysis period and target entity that have the most interactions. May be empty or short if entity had minimal discussion."
+    )
+    positive_posts: List[str] = dspy.InputField(
+        desc="List of top posts with positive sentiment across the entire analysis period and target entity. Only use if relevant."
+    )
+    negative_posts: List[str] = dspy.InputField(
+        desc="List of top posts with negative sentiment across the entire analysis period and target entity. Only use if relevant."
+    )
+    top_actors_mentioning_entity: List[str] = dspy.InputField(
+        desc="Precomputed list of the top actors who mentioned the target entity across the full analysis window, including counts/percentages (e.g., '@actor: 18 posts (35%), 120K interactions')"
+    )
+    dominant_post: str = dspy.InputField(
+        desc="The single highest-interaction post referencing the target entity across the full analysis window, including title, interactions, author, date, and a short excerpt/summary seed"
+    )
+    historical_context: List[str] = dspy.InputField(
+        desc="All past summaries and news that have been created thus far. If empty that means this is the first analysis."
+    )
+    engagement_history: List[str] = dspy.InputField(
+        desc="Weekly engagement metrics for this entity showing changes over time (format: 'Week X: N posts, Y interactions'). May contain gaps for weeks with no mentions. Use to identify trends and changes."
+    )
+    summary = dspy.OutputField(
+        desc="Exactly 4 bullet points. Each bullet at most 2 sentences. Use factual signal phrases for observations ('Posts show', 'Data indicates') and interpretive signal phrases for analysis ('suggests', 'may indicate'). Include citations to posts using post title (or truncated title) with interaction count. Do not invent events, numbers, or posts. If data is insufficient (<3 posts), state this explicitly and provide no speculative insights."
+    )
