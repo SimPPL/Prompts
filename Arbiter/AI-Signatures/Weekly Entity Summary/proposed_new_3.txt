@@ -5,6 +5,7 @@ class WeeklyEntitySummary(Signature):
     ANALYTICAL FRAMEWORK:
     - DESCRIBE (factual): State what was observed — themes, stance distribution (for/against/neutral) with counts, key actors, specific high-interaction posts and news. Use signal phrases for facts: "Posts show...", "Data indicates...", "X mentioned...".
     - INTERPRET (analytical): Explain strategic or contextual meaning only with signal phrases: "This suggests...", "Likely reflects...", "May indicate...". Never present interpretations as facts.
+    - When referring to actors (authors/channels), you MUST only use names provided in top_actors_mentioning_entity (post authors), not infer new actors from other inputs.
     - Each bullet: at most 2 sentences total. Keeps output concise and traceable.
 
     CITATION FORMATS (traceability to posts and news):
@@ -15,10 +16,15 @@ class WeeklyEntitySummary(Signature):
     - Example: News coverage highlighted "Tesla stock surges after earnings beat"
     - When weekly_news_summary or news is provided, at least one bullet must connect social discussion to coverage (both a post citation and a news citation).
 
+    THEME (when available):
+    - When assigned_theme is provided and non-empty and not a generic fallback (e.g. not "General Content"),
+      incorporate this entity-level theme in one of the bullets below (typically bullet 2 or 3). If assigned_theme
+      is empty or generic, skip any explicit mention of theme.
+
     **Output MUST be EXACTLY 4 bullets**, each ≤2 sentences, and cover these four distinct aspects:
-    1) Cross-mentions: Which actors mentioned this entity most (use the provided top_actors_mentioning_entity with counts/percent), and what narrative they drove.
-    2) Dominant post: Summarize the dominant_post's ACTUAL content and narrative, and cite its interaction count. This bullet MUST reference the dominant_post input.
-    3) Spike / phenomenon: Cite a concrete spike, event, or posting phenomenon grounded in engagement_history snapshots (only if present), and connect it to content/topic.
+    1) Cross-mentions: Which actors mentioned this entity most (use the provided top_actors_mentioning_entity with counts/percent), and what narrative they drove. Focus on the top one or two actors by mentions/interaction share and, when possible, anchor at least one of them to a concrete example post (using dominant_post or top_posts) with title and interactions. When data is available, this bullet should also reference the overall scale of discussion (posts/mentions + interactions).
+    2) Dominant post & theme: Summarize the dominant_post's ACTUAL content and narrative, and cite its interaction count. This bullet MUST reference the dominant_post input. When an assigned_theme is available, briefly connect this post to that theme.
+    3) Spike / phenomenon: Cite a concrete spike, event, or posting phenomenon grounded in engagement_history snapshots (only if present), and connect it to content/topic. If engagement_history is empty, you may infer a standout moment from obvious interaction differences in top_posts without saying that history is missing.
     4) Stance discussion: Quantify stance (for/against/neutral) using available data in inputs, and concisely explain what framing/arguments drove it. Never use the word "sentiment".
 
     Additional output rules:
@@ -66,6 +72,9 @@ class WeeklyEntitySummary(Signature):
     engagement_history: List[str] = dspy.InputField(
         desc="Weekly engagement metrics for this entity showing changes over time (format: 'Week X: N posts, Y interactions'). May contain gaps for weeks with no mentions. Use to identify trends and changes."
     )
+    assigned_theme: str = dspy.InputField(
+        desc="Optional: assigned content theme for discussion around this entity (e.g. 'Election controversy'). If empty or 'General Content', the model should not force a separate theme sentence."
+    )
     summary = dspy.OutputField(
-        desc="Exactly 4 bullet points. Each bullet at most 2 sentences. Use factual signal phrases for observations ('Posts show', 'Data indicates') and interpretive signal phrases for analysis ('suggests', 'may indicate'). Include citations to posts using post title (or truncated title) with interaction count. Do not invent events, numbers, or posts. If data is insufficient (<3 posts), state this explicitly and provide no speculative insights."
+        desc="Exactly 4 bullet points in the structure described above. Each bullet at most 2 sentences. Use factual signal phrases for observations ('Posts show', 'Data indicates') and interpretive signal phrases for analysis ('suggests', 'may indicate'). Include citations to posts using post title (or truncated title) with interaction count. Do not invent events, numbers, or posts. If data is insufficient (<3 posts), state this explicitly and provide no speculative insights."
     )

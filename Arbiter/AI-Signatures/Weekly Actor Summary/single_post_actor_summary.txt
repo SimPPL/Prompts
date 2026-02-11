@@ -19,7 +19,7 @@ class SinglePostActorSummary(Signature):
     - INTERPRET (analytical): Carefully infer what this lone post may indicate about the
       actor's positioning or strategy using signal phrases: "This suggests...",
       "Likely reflects...", "May indicate...". Never present interpretations as facts.
-    - Each bullet: at most 2 sentences total. Keep output concise and traceable.
+    - The single bullet must be at most 2 sentences total. Keep output concise and traceable.
 
     IMPORTANT EDGE-CASE RULES:
     - Do NOT generate a numeric stance distribution (no \"X% for / Y% neutral / Z% against\").
@@ -28,23 +28,26 @@ class SinglePostActorSummary(Signature):
       or pipeline behavior. Simply focus the summary on the post's themes, narrative,
       and audience reaction.
 
-    OUTPUT STRUCTURE (EXACTLY 4 bullets):
-    1) Scope & impact: State that only one post was observed, its interactions, and that
-       insights are based on this single high-impact piece of content.
-    2) Narrative & themes: Describe what the post is actually about (topics, people,
-       framing), using the provided post snapshot and themes.
-    3) Audience reaction: Explain how the audience appears to have responded based on
-       interactions and any available context (e.g., admiration, criticism, humor),
-       grounding this ONLY in the single post.
-    4) Event / contextual link: When event_context is provided, briefly relate how the post's
-       timing or content aligns with one of those events. If no event_context is provided,
-       use this bullet to state what this post suggests about the actor's role or positioning
-       in the broader conversation (without inventing external events).
+    THEME (when available):
+    - When assigned_theme is provided and non-empty and not a generic fallback (e.g. not "General Content"),
+      you may mention this theme once to orient the reader. If assigned_theme is empty or generic, skip any
+      explicit mention of theme.
+
+    OUTPUT STRUCTURE (EXACTLY 1 bullet):
+    - Return a single markdown-style bullet ("- ") that combines:
+      * The post title (from post_snapshot, truncated when too long) with interaction count and the post date,
+        using the standard citation format: "Post title here" (Interactions: N, Date: YYYY-MM-DD).
+      * The actor's name or handle (actor_name) explicitly, so it is clear whose post this is.
+      * The allocated theme (from assigned_theme) when it is present and meaningful, otherwise omit theme.
+      * Cross-references to key entities or topics mentioned in the post (from entities_mentioned and/or
+        post_snapshot), making clear what or who the actor is talking about.
+      * A short summary of what the post actually says and how it frames the topic (narrative + positioning),
+        grounded strictly in post_snapshot and themes.
 
     GENERAL OUTPUT RULES:
-    - Return only markdown-style bullets starting with "- " and no headings or standalone paragraphs.
-    - Every bullet must introduce a distinct insight (scope, themes, audience reaction, context);
-      avoid repeating the same metric or fact unless strictly necessary for a new angle.
+    - Return only one markdown-style bullet starting with "- " and no headings or standalone paragraphs.
+    - Avoid repeating the same metric or fact; each clause should add information (title/metrics, cross-references,
+      theme, or narrative).
     - Ground every statement directly in the supplied inputs; do not invent events, numbers,
       posts, or trends.
     - When citing the post, use the provided post_snapshot (which already contains title and interactions).
@@ -78,6 +81,9 @@ class SinglePostActorSummary(Signature):
     event_context: List[str] = dspy.InputField(
         desc="Optional list of 0–2 concise event or news context strings that coincide with this post's timing."
     )
+    assigned_theme: str = dspy.InputField(
+        desc="Optional: assigned content theme for this actor/post (e.g. 'Political Commentary'). If empty or 'General Content', the model should not force a separate theme sentence."
+    )
     summary: str = dspy.OutputField(
-        desc="Exactly 4 bullet points following the structure above. Each bullet at most 2 sentences and non-repetitive."
+        desc="Exactly 1 bullet point that combines post title + interactions, cross-referenced entities/topics, optional theme, and a concise summary of the post's content and framing. At most 2 sentences."
     )

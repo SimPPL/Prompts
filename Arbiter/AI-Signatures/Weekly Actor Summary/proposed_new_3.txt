@@ -6,14 +6,17 @@ class ActorWeeklySummary(Signature):
 
     You receive:
     - a date range for the analysis window,
-    - a compact engagement summary string (total posts, total interactions),
-    - the actor's highest-interaction posts (with stance / emotion tags in text),
+    - a compact engagement summary string (total posts, total interactions, and any major week-over-week changes),
+    - a list of that actor's highest-interaction posts with stance and emotion tags in the text,
     - a precomputed list of the top entities this actor mentions most (with counts/percentages),
     - a single dominant post (highest interactions) with rich details (title, interactions, date, excerpt),
-    - and engagement history snapshots (if available).
+    - engagement history snapshots (if available),
+    - an assigned overall content theme for the actor when available,
+    - an overall emotion breakdown for their content,
+    - and optional per-entity stance/emotion summaries for their most-mentioned entities.
 
-    ANALYTICAL FRAMEWORK (GitHub issue: traceability, clarity, differentiation):
-    - DESCRIBE (factual): State what was observed — posting frequency, interaction patterns, content themes, stance patterns (for/against/neutral), and specific high-interaction posts. Use signal phrases for facts: "Posted X times...", "Data shows...", "Top post discussed...".
+    ANALYTICAL FRAMEWORK:
+    - DESCRIBE (factual): State what was observed — posting frequency, interaction patterns, content themes, stance patterns (for/against/neutral), specific high-interaction posts, and how often key entities appear. Use signal phrases for facts: "Posted X times...", "Data shows...", "Top post discussed...".
     - INTERPRET (analytical): Explain strategic or contextual meaning only with signal phrases: "This suggests...", "Likely reflects...", "May indicate...". Never present interpretations as facts.
     - Each bullet: at most 2 sentences total. Keep output concise and traceable.
 
@@ -23,31 +26,48 @@ class ActorWeeklySummary(Signature):
     - Example: "Why renewable energy will transform America" (Interactions: 23.4K)
     - Example: "The future of solar power in..." (Interactions: 15.2K) [truncated long title]
 
-    Write EXACTLY **4 short bullet points** that cover these four distinct aspects:
-    1) Cross-mentions (when available): Which entities this actor mentioned most
-       (use the provided top_entities_mentioned with counts/percent), and what
-       narrative they built around them. If top_entities_mentioned is empty, skip
-       entity-name discussion and instead use this bullet to describe the actor's
-       dominant topics or themes without referencing pipeline behavior or missing entities.
-    2) Dominant post: Summarize the dominant_post's ACTUAL content and narrative, and cite its interaction count. This bullet MUST reference the dominant_post input.
-    3) Spike / phenomenon: When engagement_history snapshots are present, cite a concrete spike, event, or posting phenomenon grounded in those snapshots and connect it to content/topic. When engagement_history is empty but there are multiple posts, infer a \"spike\" or standout moment from interaction differences in top_posts (e.g., one post far above the rest) **without explicitly stating that engagement history is missing**.
-    4) Stance discussion: Quantify stance (for/against/neutral) using available data in inputs, and concisely explain what framing/arguments drove it. Never use the word "sentiment" and replace positive/negative keywords with for/against.
+    THEME (when available):
+    - When assigned_theme is provided and is non-empty and not a generic fallback (e.g. not "General Content"),
+      incorporate this theme in one of the bullets below (typically bullet 2 or 3).
+    - If assigned_theme is empty or generic, skip any explicit mention of theme — do NOT add a bullet or clause
+      just to say that a theme could not be determined.
+
+    Write EXACTLY **4 short bullet points** with this structure:
+    1) Scale & key entities: Use engagement_metrics to state total posts and total interactions in the analysis window.
+       When top_entities_mentioned is non-empty, highlight the top one or two entities this actor mentions most
+       (with their mention share) and the narrative they build around them. If top_entities_mentioned is empty, skip
+       entity names and instead describe the dominant topics or themes without referencing pipeline behavior or
+       "missing" entities.
+    2) Dominant post & theme: Use dominant_post to summarize what the top post is actually about, citing its title
+       (or truncated title) and interaction count. When an assigned_theme is available, briefly explain how this post
+       fits under that theme (e.g., "fits their 'Political Commentary' focus"). This bullet MUST reference the
+       dominant_post input.
+    3) Overall themes, stance & emotion: Summarize the actor's overall themes/content strategy using content_analysis
+       (and assigned_theme when available), then connect this to the stance distribution (for/neutral/against) and the
+       high-level emotion pattern from emotion_breakdown. Never use the word "sentiment" — use "for/against/neutral"
+       instead of positive/negative.
+    4) Stance & emotion toward key entities: When top_entity_stance_emotion is non-empty, synthesize how the actor's
+       stance (for/neutral/against) and emotions are distributed toward the one or two most-mentioned entities using
+       the provided pre-formatted summaries. Do not invent additional percentages beyond what is implied there. If
+       top_entity_stance_emotion is empty, use this bullet to describe stance and emotion toward the overall topic
+       only, without mentioning that entity-level data is missing.
 
     Output rules:
     - Return only markdown-style bullets starting with "- " and no headings or standalone paragraphs.
     - First bullet MUST reference total posts and total interactions analyzed (from engagement_metrics).
     - When stating facts, use factual signal phrases: "Posted X times", "Data shows", "Top post discussed", "Engagement history indicates".
     - When interpreting, use interpretive signal phrases: "This suggests", "Likely reflects", "May indicate", "Could signal".
-    - Ground every statement directly in the supplied inputs; do not invent events, numbers, posts, or trends.
+    - Ground every statement directly in the supplied inputs; do not invent events, numbers, posts, trends, or entities.
     - When citing a post, use the post title (or truncated title) followed by interaction count: "Post title" (Interactions: N).
     - Avoid generic phrases like "engagement was high" or "people talked a lot"; state what they talked about and who they reacted to.
     - Always use the actor's name or handle exactly as given in the inputs.
     - Do not treat interpretations as facts — use signal phrases to distinguish them.
 
     DATA AVAILABILITY:
-    - If engagement_history is empty, DO NOT say that engagement history is missing. Instead, base the "spike / phenomenon" bullet on interaction differences in top_posts (e.g., one or two posts far above the rest). Do not invent temporal trends.
     - If top_posts is very short (<3 posts), acknowledge limited data briefly and avoid over-claiming.
-    - Never fabricate trends from insufficient data.
+    - If engagement_history is present, you may reference clearly visible spikes or changes, but only when
+      they are directly supported by the snapshots. If engagement_history is empty, do NOT mention that it
+      is missing and do not invent temporal trends.
 
     LANGUAGE REQUIREMENT: The input data may contain content in various languages.
     Translate any non-English content you use and ensure the final bullets are ALWAYS in English.
@@ -79,6 +99,15 @@ class ActorWeeklySummary(Signature):
     previous_week_summary: str = dspy.InputField(
         desc="Previous week's complete summary for comparison - if EMPTY, focus only on current week insights without mentioning data availability"
     )
+    assigned_theme: str = dspy.InputField(
+        desc="Optional: assigned content theme for this actor (e.g. 'Political Commentary', 'Tech Analysis'). If empty or 'General Content', the model should not force a separate theme sentence."
+    )
+    emotion_breakdown: str = dspy.InputField(
+        desc="High-level emotion breakdown for this actor's content (e.g. 'Joy: 10.0%, Anger: 5.0%, ... , Neutral: 60.0%')."
+    )
+    top_entity_stance_emotion: List[str] = dspy.InputField(
+        desc="Optional compact summaries of stance and emotion toward the most-mentioned entities for this actor (top 1–2). Each entry is a pre-formatted string such as \"EntityName — Stance (for/neutral/against): A/B/C; Dominant emotion: anger (X%)\"."
+    )
     summary: str = dspy.OutputField(
-        desc="Exactly 4 bullet points synthesizing strategic insights about content focus, positioning, and audience engagement. Each bullet at most 2 sentences. Use factual signal phrases for observations ('Posted', 'Data shows') and interpretive signal phrases for analysis ('suggests', 'likely reflects', 'may indicate'). When citing posts, use post title (or truncated title) followed by interaction count. First bullet must state total posts and interactions. Do not treat interpretations as facts — mark them with signal phrases."
+        desc="Exactly 4 bullet points in the structure described above. Each bullet at most 2 sentences. Use factual signal phrases for observations ('Posted', 'Data shows') and interpretive signal phrases for analysis ('suggests', 'likely reflects', 'may indicate'). When citing posts, use post title (or truncated title) followed by interaction count. First bullet must state total posts and interactions. Do not treat interpretations as facts — mark them with signal phrases."
     )
